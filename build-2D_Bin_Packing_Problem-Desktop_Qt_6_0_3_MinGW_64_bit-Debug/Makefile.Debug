@@ -58,7 +58,21 @@ OBJECTS       = debug/main.o \
 		debug/qrc_app_resources.o \
 		debug/moc_mainwindow.o
 
-DIST          =  ..\2D_Bin_Packing_Problem\mainwindow.h ..\2D_Bin_Packing_Problem\main.cpp \
+DIST          = app_icons/add.png \
+		app_icons/back.png \
+		app_icons/bpp.png \
+		app_icons/clear.png \
+		app_icons/exit.png \
+		app_icons/exit_32.png \
+		app_icons/help.png \
+		app_icons/home.png \
+		app_icons/package.png \
+		app_icons/play.png \
+		app_icons/refresh.png \
+		app_icons/settings.png \
+		app_icons/zoom_in.png \
+		app_icons/zoom_out.png \
+		app_icons/zoom_to_fit.png ..\2D_Bin_Packing_Problem\mainwindow.h ..\2D_Bin_Packing_Problem\main.cpp \
 		..\2D_Bin_Packing_Problem\mainwindow.cpp
 QMAKE_TARGET  = 2D_Bin_Packing_Problem
 DESTDIR        = debug\ #avoid trailing-slash linebreak
@@ -104,11 +118,21 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_app_resources.cpp
 debug/qrc_app_resources.cpp: ../2D_Bin_Packing_Problem/app_resources.qrc \
 		C:/Qt/6.0.3/mingw81_64/bin/rcc.exe \
+		../2D_Bin_Packing_Problem/app_icons/zoom_out.png \
+		../2D_Bin_Packing_Problem/app_icons/back.png \
+		../2D_Bin_Packing_Problem/app_icons/home.png \
+		../2D_Bin_Packing_Problem/app_icons/clear.png \
 		../2D_Bin_Packing_Problem/app_icons/help.png \
+		../2D_Bin_Packing_Problem/app_icons/refresh.png \
+		../2D_Bin_Packing_Problem/app_icons/exit_32.png \
+		../2D_Bin_Packing_Problem/app_icons/package.png \
+		../2D_Bin_Packing_Problem/app_icons/add.png \
+		../2D_Bin_Packing_Problem/app_icons/play.png \
 		../2D_Bin_Packing_Problem/app_icons/exit.png \
 		../2D_Bin_Packing_Problem/app_icons/bpp.png \
-		../2D_Bin_Packing_Problem/app_icons/add.png \
-		../2D_Bin_Packing_Problem/app_icons/settings.png
+		../2D_Bin_Packing_Problem/app_icons/settings.png \
+		../2D_Bin_Packing_Problem/app_icons/zoom_to_fit.png \
+		../2D_Bin_Packing_Problem/app_icons/zoom_in.png
 	C:\Qt\6.0.3\mingw81_64\bin\rcc.exe -name app_resources ..\2D_Bin_Packing_Problem\app_resources.qrc -o debug\qrc_app_resources.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -264,6 +288,10 @@ debug/moc_mainwindow.cpp: ../2D_Bin_Packing_Problem/mainwindow.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtGui/QCloseEvent \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
 		debug/moc_predefs.h \
 		C:/Qt/6.0.3/mingw81_64/bin/moc.exe
 	C:\Qt\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include C:/Users/Andrei/Desktop/CCppCode/2D_BPP_gui/build-2D_Bin_Packing_Problem-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/debug/moc_predefs.h -IC:/Qt/6.0.3/mingw81_64/mkspecs/win32-g++ -IC:/Users/Andrei/Desktop/CCppCode/2D_BPP_gui/2D_Bin_Packing_Problem -IC:/Qt/6.0.3/mingw81_64/include -IC:/Qt/6.0.3/mingw81_64/include/QtWidgets -IC:/Qt/6.0.3/mingw81_64/include/QtGui -IC:/Qt/6.0.3/mingw81_64/include/QtCore -I. -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/Qt/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/Qt/Tools/mingw810_64/x86_64-w64-mingw32/include ..\2D_Bin_Packing_Problem\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -435,6 +463,10 @@ debug/main.o: ../2D_Bin_Packing_Problem/main.cpp ../2D_Bin_Packing_Problem/mainw
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtGui/QCloseEvent \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QApplication \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -588,6 +620,10 @@ debug/mainwindow.o: ../2D_Bin_Packing_Problem/mainwindow.cpp ../2D_Bin_Packing_P
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtGui/QCloseEvent \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QMessageBox \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
 		ui_mainwindow.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtCore/QVariant \
 		C:/Qt/6.0.3/mingw81_64/include/QtGui/QIcon \
@@ -614,6 +650,8 @@ debug/mainwindow.o: ../2D_Bin_Packing_Problem/mainwindow.cpp ../2D_Bin_Packing_P
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QSpacerItem \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QSplitter \
+		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qsplitter.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QStackedWidget \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/qstackedwidget.h \
 		C:/Qt/6.0.3/mingw81_64/include/QtWidgets/QStatusBar \

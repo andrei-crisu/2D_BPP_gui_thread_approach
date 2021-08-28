@@ -5,5 +5,18 @@
         <file>app_icons/exit.png</file>
         <file>app_icons/help.png</file>
         <file>app_icons/settings.png</file>
+        <file>app_icons/clear.png</file>
+        <file>app_icons/zoom_in.png</file>
+        <file>app_icons/zoom_out.png</file>
+        <file>app_icons/zoom_to_fit.png</file>
+        <file>app_icons/play.png</file>
+        <file>app_icons/back.png</file>
+        <file>app_icons/home.png</file>
+        <file>app_icons/refresh.png</file>
+        <file>app_icons/exit_32.png</file>
+        <file>app_icons/package.png</file>
+        <file>app_icons/next.png</file>
+        <file>app_icons/previous.png</file>
+        <file>app_icons/all.png</file>
     </qresource>
 </RCC>

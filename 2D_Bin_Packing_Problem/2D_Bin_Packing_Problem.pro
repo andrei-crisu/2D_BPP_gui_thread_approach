@@ -28,7 +28,20 @@ RESOURCES += \
 
 DISTFILES += \
     app_icons/add.png \
+    app_icons/all.png \
+    app_icons/back.png \
     app_icons/bpp.png \
+    app_icons/clear.png \
     app_icons/exit.png \
+    app_icons/exit_32.png \
     app_icons/help.png \
-    app_icons/settings.png
+    app_icons/home.png \
+    app_icons/next.png \
+    app_icons/package.png \
+    app_icons/play.png \
+    app_icons/previous.png \
+    app_icons/refresh.png \
+    app_icons/settings.png \
+    app_icons/zoom_in.png \
+    app_icons/zoom_out.png \
+    app_icons/zoom_to_fit.png
