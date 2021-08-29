@@ -18,5 +18,9 @@
         <file>app_icons/next.png</file>
         <file>app_icons/previous.png</file>
         <file>app_icons/all.png</file>
+        <file>app_icons/delete.png</file>
+        <file>app_icons/file.png</file>
+        <file>app_icons/data-processing.png</file>
+        <file>app_icons/run.png</file>
     </qresource>
 </RCC>

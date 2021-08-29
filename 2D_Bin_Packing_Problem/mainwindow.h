@@ -7,6 +7,7 @@
 #include<QGraphicsItem>
 #include<QCloseEvent>
 #include<QMessageBox>
+#include<QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,16 +23,6 @@ public:
     void closeEvent(QCloseEvent *event);
 
 private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_5_clicked();
-
-    void on_pushButton_6_clicked();
-
     void on_exit_button_clicked();
 
     void on_help_button_clicked();
@@ -47,6 +38,42 @@ private slots:
     void on_help_clicked();
 
     void on_settings_clicked();
+
+    void on_refresh_clicked();
+
+    void on_zoom_out_clicked();
+
+    void on_zoom_in_clicked();
+
+    void on_zoom_to_fit_clicked();
+
+    void on_clear_screen_clicked();
+
+    void on_all_bins_clicked();
+
+    void on_previous_bin_clicked();
+
+    void on_next_bin_clicked();
+
+    void on_clear_2_clicked();
+
+    void on_clear_clicked();
+
+    void on_clear_3_clicked();
+
+    void on_home_2_clicked();
+
+    void on_help_2_clicked();
+
+    void on_settings_2_clicked();
+
+    void on_load_from_file_clicked();
+
+    void on_add_clicked();
+
+    void on_run_clicked();
+
+    void on_process_clicked();
 
 private:
     Ui::MainWindow *ui;

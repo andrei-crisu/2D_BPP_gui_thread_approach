@@ -32,8 +32,11 @@ DISTFILES += \
     app_icons/back.png \
     app_icons/bpp.png \
     app_icons/clear.png \
+    app_icons/data-processing.png \
+    app_icons/delete.png \
     app_icons/exit.png \
     app_icons/exit_32.png \
+    app_icons/file.png \
     app_icons/help.png \
     app_icons/home.png \
     app_icons/next.png \
@@ -41,6 +44,7 @@ DISTFILES += \
     app_icons/play.png \
     app_icons/previous.png \
     app_icons/refresh.png \
+    app_icons/run.png \
     app_icons/settings.png \
     app_icons/zoom_in.png \
     app_icons/zoom_out.png \
