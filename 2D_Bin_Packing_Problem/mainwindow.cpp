@@ -3,14 +3,13 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindow),all_objects(),all_bins()
 {
     ui->setupUi(this);
 
     //
     scene=new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
-
 
 }
 
@@ -230,21 +229,33 @@ void MainWindow::on_load_from_file_clicked()
         ui->masive_load_input->setText(in.readAll());
         file.close();
     }
-}
-
-void MainWindow::on_add_clicked()
-{
-    QString rect_height_str,rect_width_str;
 
 }
 
 void MainWindow::on_run_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+
 }
 
 
 void MainWindow::on_process_clicked()
+{
+    QString data_str=ui->masive_load_input->toPlainText();
+    try {
+        if(data_str.isEmpty())
+            throw Exception("Empty: No data provided!");
+        DataParser parser(data_str);
+        all_objects.append(parser.getRectList());
+        QString str=parser.listAsString();
+        str="Rectangles added: {"+str+"}";
+        printOutput(ui->status_window,str,DARK_BLUE);
+    }  catch (Exception &e){
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
+}
+
+void MainWindow::on_add_clicked()
 {
 
 }

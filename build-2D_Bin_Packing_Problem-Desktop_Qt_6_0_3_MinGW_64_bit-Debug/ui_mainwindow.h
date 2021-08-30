@@ -97,7 +97,9 @@ public:
     QGroupBox *groupBox_7;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *pushButton;
     QPushButton *run;
+    QSpacerItem *horizontalSpacer_9;
     QPushButton *home_2;
     QPushButton *help_2;
     QPushButton *settings_2;
@@ -287,6 +289,7 @@ public:
         groupBox_8->setObjectName(QString::fromUtf8("groupBox_8"));
         verticalLayout_7 = new QVBoxLayout(groupBox_8);
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(0, 0, 0, 0);
         splitter = new QSplitter(groupBox_8);
         splitter->setObjectName(QString::fromUtf8("splitter"));
         splitter->setStyleSheet(QString::fromUtf8("QSplitter::handle\n"
@@ -746,10 +749,34 @@ public:
         horizontalLayout_3 = new QHBoxLayout(groupBox_7);
         horizontalLayout_3->setSpacing(2);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 4, 0);
+        horizontalLayout_3->setContentsMargins(0, 0, 20, 0);
         horizontalSpacer_3 = new QSpacerItem(292, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
+
+        pushButton = new QPushButton(groupBox_7);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy);
+        pushButton->setMinimumSize(QSize(50, 30));
+        pushButton->setMaximumSize(QSize(50, 30));
+        pushButton->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        pushButton->setIcon(icon6);
+        pushButton->setIconSize(QSize(26, 26));
+
+        horizontalLayout_3->addWidget(pushButton);
 
         run = new QPushButton(groupBox_7);
         run->setObjectName(QString::fromUtf8("run"));
@@ -776,6 +803,10 @@ public:
         run->setIconSize(QSize(26, 26));
 
         horizontalLayout_3->addWidget(run);
+
+        horizontalSpacer_9 = new QSpacerItem(133, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_9);
 
         home_2 = new QPushButton(groupBox_7);
         home_2->setObjectName(QString::fromUtf8("home_2"));
@@ -1378,6 +1409,10 @@ public:
 #endif // QT_CONFIG(tooltip)
         clear_3->setText(QString());
         groupBox_7->setTitle(QString());
+#if QT_CONFIG(tooltip)
+        pushButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        pushButton->setText(QString());
 #if QT_CONFIG(tooltip)
         run->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">run algorithm</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)

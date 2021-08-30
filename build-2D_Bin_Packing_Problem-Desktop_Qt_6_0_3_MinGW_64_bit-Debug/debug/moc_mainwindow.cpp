@@ -8,6 +8,7 @@
 
 #include <memory>
 #include "../../2D_Bin_Packing_Problem/mainwindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
@@ -54,9 +55,9 @@ QT_MOC_LITERAL(404, 17), // "on_home_2_clicked"
 QT_MOC_LITERAL(422, 17), // "on_help_2_clicked"
 QT_MOC_LITERAL(440, 21), // "on_settings_2_clicked"
 QT_MOC_LITERAL(462, 25), // "on_load_from_file_clicked"
-QT_MOC_LITERAL(488, 14), // "on_add_clicked"
-QT_MOC_LITERAL(503, 14), // "on_run_clicked"
-QT_MOC_LITERAL(518, 18) // "on_process_clicked"
+QT_MOC_LITERAL(488, 14), // "on_run_clicked"
+QT_MOC_LITERAL(503, 18), // "on_process_clicked"
+QT_MOC_LITERAL(522, 14) // "on_add_clicked"
 
     },
     "MainWindow\0on_exit_button_clicked\0\0"
@@ -72,8 +73,8 @@ QT_MOC_LITERAL(518, 18) // "on_process_clicked"
     "on_clear_clicked\0on_clear_3_clicked\0"
     "on_home_2_clicked\0on_help_2_clicked\0"
     "on_settings_2_clicked\0on_load_from_file_clicked\0"
-    "on_add_clicked\0on_run_clicked\0"
-    "on_process_clicked"
+    "on_run_clicked\0on_process_clicked\0"
+    "on_add_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -178,9 +179,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 20: _t->on_help_2_clicked(); break;
         case 21: _t->on_settings_2_clicked(); break;
         case 22: _t->on_load_from_file_clicked(); break;
-        case 23: _t->on_add_clicked(); break;
-        case 24: _t->on_run_clicked(); break;
-        case 25: _t->on_process_clicked(); break;
+        case 23: _t->on_run_clicked(); break;
+        case 24: _t->on_process_clicked(); break;
+        case 25: _t->on_add_clicked(); break;
         default: ;
         }
     }

@@ -8,6 +8,11 @@
 #include<QCloseEvent>
 #include<QMessageBox>
 #include<QFileDialog>
+#include "dataparser.h"
+#include"io_interface.h"
+#include"my_constants.h"
+#include"myobject.h"
+#include "bincontainer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -69,15 +74,19 @@ private slots:
 
     void on_load_from_file_clicked();
 
-    void on_add_clicked();
-
     void on_run_clicked();
 
     void on_process_clicked();
+
+    void on_add_clicked();
 
 private:
     Ui::MainWindow *ui;
 
     QGraphicsScene *scene;
+    QVector<MyObject> all_objects;
+    QVector<BinContainer> all_bins;
+    double container_width,container_height;
+
 };
 #endif // MAINWINDOW_H

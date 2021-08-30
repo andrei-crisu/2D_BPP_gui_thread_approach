@@ -1,0 +1,10 @@
+debug/basic_interpreter.o
+debug/bincontainer.o
+debug/dataparser.o
+debug/exception.o
+debug/io_interface.o
+debug/main.o
+debug/mainwindow.o
+debug/myobject.o
+debug/qrc_app_resources.o
+debug/moc_mainwindow.o

@@ -334,6 +334,18 @@ border-style:none;
            <string/>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
            <item>
             <widget class="QSplitter" name="splitter">
              <property name="styleSheet">
@@ -1365,7 +1377,7 @@ background-color:none;
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>4</number>
+            <number>20</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
@@ -1382,6 +1394,60 @@ background-color:none;
               </size>
              </property>
             </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;clear&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">  QPushButton {
+	 background-color: rgba(41, 90, 86, 80);
+	  border-color: rgb(41, 90, 86);
+      border-style:solid;
+      border-width:1px;
+      font:  14px; 
+	  color: rgb(41, 90, 86);
+  }
+  QPushButton:hover:!pressed {
+	 background-color: rgba(167, 206, 151,120);
+	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <disabledon>:/icons/app_icons/delete.png</disabledon>
+              </iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>26</width>
+               <height>26</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="run">
@@ -1433,6 +1499,22 @@ background-color:none;
               </size>
              </property>
             </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>133</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item>
             <widget class="QPushButton" name="home_2">
