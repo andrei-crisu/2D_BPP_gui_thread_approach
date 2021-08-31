@@ -67,25 +67,28 @@ public:
     QLineEdit *bin_height_input;
     QHBoxLayout *horizontalLayout_5;
     QSpacerItem *horizontalSpacer_5;
-    QPushButton *add_2;
+    QPushButton *set_container;
     QPushButton *clear_2;
     QSpacerItem *horizontalSpacer_8;
     QSpacerItem *verticalSpacer;
     QGroupBox *groupBox_13;
     QVBoxLayout *verticalLayout_8;
     QTextEdit *masive_load_input;
+    QHBoxLayout *horizontalLayout_10;
+    QSpacerItem *horizontalSpacer_11;
+    QPushButton *process;
+    QPushButton *load_from_file;
     QHBoxLayout *horizontalLayout_8;
     QFormLayout *formLayout_2;
     QLabel *label_3;
     QLineEdit *rectangle_width_input;
     QLabel *label_4;
     QLineEdit *rectangle_height_input;
+    QSpacerItem *horizontalSpacer_10;
+    QPushButton *add;
     QSpacerItem *horizontalSpacer_7;
     QHBoxLayout *horizontalLayout_6;
     QSpacerItem *horizontalSpacer_6;
-    QPushButton *process;
-    QPushButton *add;
-    QPushButton *load_from_file;
     QPushButton *clear;
     QGroupBox *groupBox_9;
     QVBoxLayout *verticalLayout_6;
@@ -97,7 +100,7 @@ public:
     QGroupBox *groupBox_7;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
-    QPushButton *pushButton;
+    QPushButton *clear_stored_data;
     QPushButton *run;
     QSpacerItem *horizontalSpacer_9;
     QPushButton *home_2;
@@ -388,16 +391,16 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_5);
 
-        add_2 = new QPushButton(groupBox_14);
-        add_2->setObjectName(QString::fromUtf8("add_2"));
+        set_container = new QPushButton(groupBox_14);
+        set_container->setObjectName(QString::fromUtf8("set_container"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(add_2->sizePolicy().hasHeightForWidth());
-        add_2->setSizePolicy(sizePolicy);
-        add_2->setMinimumSize(QSize(50, 30));
-        add_2->setMaximumSize(QSize(50, 30));
-        add_2->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+        sizePolicy.setHeightForWidth(set_container->sizePolicy().hasHeightForWidth());
+        set_container->setSizePolicy(sizePolicy);
+        set_container->setMinimumSize(QSize(50, 30));
+        set_container->setMaximumSize(QSize(50, 30));
+        set_container->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
 "	 background-color: rgba(41, 90, 86, 80);\n"
 "	  border-color: rgb(41, 90, 86);\n"
 "      border-style:solid;\n"
@@ -412,10 +415,10 @@ public:
 "  }"));
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons/app_icons/play.png"), QSize(), QIcon::Normal, QIcon::On);
-        add_2->setIcon(icon5);
-        add_2->setIconSize(QSize(26, 26));
+        set_container->setIcon(icon5);
+        set_container->setIconSize(QSize(26, 26));
 
-        horizontalLayout_5->addWidget(add_2);
+        horizontalLayout_5->addWidget(set_container);
 
         clear_2 = new QPushButton(groupBox_14);
         clear_2->setObjectName(QString::fromUtf8("clear_2"));
@@ -468,7 +471,9 @@ public:
         groupBox_13->setObjectName(QString::fromUtf8("groupBox_13"));
         groupBox_13->setFont(font);
         verticalLayout_8 = new QVBoxLayout(groupBox_13);
+        verticalLayout_8->setSpacing(2);
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
+        verticalLayout_8->setContentsMargins(0, 0, 0, 0);
         masive_load_input = new QTextEdit(groupBox_13);
         masive_load_input->setObjectName(QString::fromUtf8("masive_load_input"));
         masive_load_input->setMinimumSize(QSize(0, 30));
@@ -480,6 +485,67 @@ public:
 "}"));
 
         verticalLayout_8->addWidget(masive_load_input);
+
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_10->addItem(horizontalSpacer_11);
+
+        process = new QPushButton(groupBox_13);
+        process->setObjectName(QString::fromUtf8("process"));
+        sizePolicy.setHeightForWidth(process->sizePolicy().hasHeightForWidth());
+        process->setSizePolicy(sizePolicy);
+        process->setMinimumSize(QSize(50, 30));
+        process->setMaximumSize(QSize(50, 30));
+        process->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8(":/icons/app_icons/data-processing.png"), QSize(), QIcon::Normal, QIcon::On);
+        process->setIcon(icon7);
+        process->setIconSize(QSize(28, 28));
+
+        horizontalLayout_10->addWidget(process);
+
+        load_from_file = new QPushButton(groupBox_13);
+        load_from_file->setObjectName(QString::fromUtf8("load_from_file"));
+        sizePolicy.setHeightForWidth(load_from_file->sizePolicy().hasHeightForWidth());
+        load_from_file->setSizePolicy(sizePolicy);
+        load_from_file->setMinimumSize(QSize(50, 30));
+        load_from_file->setMaximumSize(QSize(50, 30));
+        load_from_file->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        QIcon icon8;
+        icon8.addFile(QString::fromUtf8(":/icons/app_icons/file.png"), QSize(), QIcon::Normal, QIcon::On);
+        load_from_file->setIcon(icon8);
+        load_from_file->setIconSize(QSize(24, 24));
+
+        horizontalLayout_10->addWidget(load_from_file);
+
+
+        verticalLayout_8->addLayout(horizontalLayout_10);
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
@@ -530,46 +596,9 @@ public:
 
         horizontalLayout_8->addLayout(formLayout_2);
 
-        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_10 = new QSpacerItem(20, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout_8->addItem(horizontalSpacer_7);
-
-
-        verticalLayout_8->addLayout(horizontalLayout_8);
-
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setSpacing(2);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(-1, -1, 4, -1);
-        horizontalSpacer_6 = new QSpacerItem(68, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_6->addItem(horizontalSpacer_6);
-
-        process = new QPushButton(groupBox_13);
-        process->setObjectName(QString::fromUtf8("process"));
-        sizePolicy.setHeightForWidth(process->sizePolicy().hasHeightForWidth());
-        process->setSizePolicy(sizePolicy);
-        process->setMinimumSize(QSize(50, 30));
-        process->setMaximumSize(QSize(50, 30));
-        process->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
-"	 background-color: rgba(41, 90, 86, 80);\n"
-"	  border-color: rgb(41, 90, 86);\n"
-"      border-style:solid;\n"
-"      border-width:1px;\n"
-"      font:  14px; \n"
-"	  color: rgb(41, 90, 86);\n"
-"  }\n"
-"  QPushButton:hover:!pressed {\n"
-"	 background-color: rgba(167, 206, 151,120);\n"
-"	  border-color: rgba(41, 90, 86,164);\n"
-"      border-style:solid;\n"
-"  }"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/icons/app_icons/data-processing.png"), QSize(), QIcon::Normal, QIcon::On);
-        process->setIcon(icon7);
-        process->setIconSize(QSize(28, 28));
-
-        horizontalLayout_6->addWidget(process);
+        horizontalLayout_8->addItem(horizontalSpacer_10);
 
         add = new QPushButton(groupBox_13);
         add->setObjectName(QString::fromUtf8("add"));
@@ -590,38 +619,27 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/icons/app_icons/add.png"), QSize(), QIcon::Normal, QIcon::On);
-        add->setIcon(icon8);
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/icons/app_icons/add.png"), QSize(), QIcon::Normal, QIcon::On);
+        add->setIcon(icon9);
         add->setIconSize(QSize(26, 26));
 
-        horizontalLayout_6->addWidget(add);
+        horizontalLayout_8->addWidget(add);
 
-        load_from_file = new QPushButton(groupBox_13);
-        load_from_file->setObjectName(QString::fromUtf8("load_from_file"));
-        sizePolicy.setHeightForWidth(load_from_file->sizePolicy().hasHeightForWidth());
-        load_from_file->setSizePolicy(sizePolicy);
-        load_from_file->setMinimumSize(QSize(50, 30));
-        load_from_file->setMaximumSize(QSize(50, 30));
-        load_from_file->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
-"	 background-color: rgba(41, 90, 86, 80);\n"
-"	  border-color: rgb(41, 90, 86);\n"
-"      border-style:solid;\n"
-"      border-width:1px;\n"
-"      font:  14px; \n"
-"	  color: rgb(41, 90, 86);\n"
-"  }\n"
-"  QPushButton:hover:!pressed {\n"
-"	 background-color: rgba(167, 206, 151,120);\n"
-"	  border-color: rgba(41, 90, 86,164);\n"
-"      border-style:solid;\n"
-"  }"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8(":/icons/app_icons/file.png"), QSize(), QIcon::Normal, QIcon::On);
-        load_from_file->setIcon(icon9);
-        load_from_file->setIconSize(QSize(24, 24));
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_6->addWidget(load_from_file);
+        horizontalLayout_8->addItem(horizontalSpacer_7);
+
+
+        verticalLayout_8->addLayout(horizontalLayout_8);
+
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setSpacing(2);
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(-1, -1, 4, -1);
+        horizontalSpacer_6 = new QSpacerItem(68, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_6);
 
         clear = new QPushButton(groupBox_13);
         clear->setObjectName(QString::fromUtf8("clear"));
@@ -754,13 +772,13 @@ public:
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        pushButton = new QPushButton(groupBox_7);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy);
-        pushButton->setMinimumSize(QSize(50, 30));
-        pushButton->setMaximumSize(QSize(50, 30));
-        pushButton->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+        clear_stored_data = new QPushButton(groupBox_7);
+        clear_stored_data->setObjectName(QString::fromUtf8("clear_stored_data"));
+        sizePolicy.setHeightForWidth(clear_stored_data->sizePolicy().hasHeightForWidth());
+        clear_stored_data->setSizePolicy(sizePolicy);
+        clear_stored_data->setMinimumSize(QSize(50, 30));
+        clear_stored_data->setMaximumSize(QSize(50, 30));
+        clear_stored_data->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
 "	 background-color: rgba(41, 90, 86, 80);\n"
 "	  border-color: rgb(41, 90, 86);\n"
 "      border-style:solid;\n"
@@ -773,10 +791,10 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        pushButton->setIcon(icon6);
-        pushButton->setIconSize(QSize(26, 26));
+        clear_stored_data->setIcon(icon6);
+        clear_stored_data->setIconSize(QSize(26, 26));
 
-        horizontalLayout_3->addWidget(pushButton);
+        horizontalLayout_3->addWidget(clear_stored_data);
 
         run = new QPushButton(groupBox_7);
         run->setObjectName(QString::fromUtf8("run"));
@@ -1376,28 +1394,28 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Width:", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Height:", nullptr));
 #if QT_CONFIG(tooltip)
-        add_2->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>save bin size</p></body></html>", nullptr));
+        set_container->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>save bin size</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        add_2->setText(QString());
+        set_container->setText(QString());
 #if QT_CONFIG(tooltip)
         clear_2->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         clear_2->setText(QString());
         groupBox_13->setTitle(QCoreApplication::translate("MainWindow", "Add Rectangles", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "Width:", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "Height:", nullptr));
 #if QT_CONFIG(tooltip)
         process->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">process data loaded from file</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         process->setText(QString());
 #if QT_CONFIG(tooltip)
-        add->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">add rectangle</span></p></body></html>", nullptr));
-#endif // QT_CONFIG(tooltip)
-        add->setText(QString());
-#if QT_CONFIG(tooltip)
         load_from_file->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">load data from file</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         load_from_file->setText(QString());
+        label_3->setText(QCoreApplication::translate("MainWindow", "Width:", nullptr));
+        label_4->setText(QCoreApplication::translate("MainWindow", "Height:", nullptr));
+#if QT_CONFIG(tooltip)
+        add->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">add rectangle</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        add->setText(QString());
 #if QT_CONFIG(tooltip)
         clear->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear rectangle data</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1410,9 +1428,9 @@ public:
         clear_3->setText(QString());
         groupBox_7->setTitle(QString());
 #if QT_CONFIG(tooltip)
-        pushButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
+        clear_stored_data->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        pushButton->setText(QString());
+        clear_stored_data->setText(QString());
 #if QT_CONFIG(tooltip)
         run->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">run algorithm</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)

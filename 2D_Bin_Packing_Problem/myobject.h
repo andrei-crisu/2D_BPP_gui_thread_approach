@@ -12,7 +12,7 @@ public:
     double setHeight(double h);
     void rotate_90();
     double getWidth();
-    double getHeight();
+    double getHeight() ;
     bool isRotated();
     MyObject& operator=(const MyObject &object);
     double getArea();

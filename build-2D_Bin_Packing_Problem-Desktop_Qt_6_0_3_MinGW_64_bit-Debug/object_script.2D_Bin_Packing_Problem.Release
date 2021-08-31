@@ -1,4 +1,3 @@
-release/basic_interpreter.o
 release/bincontainer.o
 release/dataparser.o
 release/exception.o
@@ -6,5 +5,6 @@ release/io_interface.o
 release/main.o
 release/mainwindow.o
 release/myobject.o
+release/sorting_algorithm.o
 release/qrc_app_resources.o
 release/moc_mainwindow.o

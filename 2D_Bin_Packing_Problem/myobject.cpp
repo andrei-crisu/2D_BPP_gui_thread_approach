@@ -62,7 +62,7 @@ MyObject& MyObject::operator=(const MyObject &object)
     width=object.width;
     height=object.height;
     rotated_90=object.rotated_90;
-    return *this;
+    return (*this);
 }
 
 double MyObject::getArea()

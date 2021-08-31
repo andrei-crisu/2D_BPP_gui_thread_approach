@@ -13,6 +13,7 @@
 #include"my_constants.h"
 #include"myobject.h"
 #include "bincontainer.h"
+#include"sorting_algorithm.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -79,6 +80,10 @@ private slots:
     void on_process_clicked();
 
     void on_add_clicked();
+
+    void on_set_container_clicked();
+
+    void on_clear_stored_data_clicked();
 
 private:
     Ui::MainWindow *ui;
