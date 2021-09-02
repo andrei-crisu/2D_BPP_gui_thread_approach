@@ -86,6 +86,20 @@ private slots:
 
     void on_clear_stored_data_clicked();
 
+    void on_home_4_clicked();
+
+    void on_to_packing_clicked();
+
+    void on_help_4_clicked();
+
+    void on_horizontalSlider_valueChanged(int value);
+
+    void on_home_5_clicked();
+
+    void on_to_packing_2_clicked();
+
+    void on_settings_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -94,6 +108,7 @@ private:
     QVector<BinContainer> all_bins;
     double container_width,container_height;
     int draw_bin_iterator;
+    double placing_step;
 
 };
 #endif // MAINWINDOW_H

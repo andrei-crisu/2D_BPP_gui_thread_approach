@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     container_height=0;
     container_width=0;
     draw_bin_iterator=0;
+    placing_step=1;
 
 }
 
@@ -88,12 +89,12 @@ void MainWindow::on_exit_button_clicked()
 
 void MainWindow::on_help_button_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void MainWindow::on_settings_button_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::on_bpp_view_button_clicked()
@@ -113,18 +114,19 @@ void MainWindow::on_back_clicked()
 
 void MainWindow::on_help_clicked()
 {
+    ui->stackedWidget->setCurrentIndex(4);
 
 }
 
 void MainWindow::on_settings_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::on_refresh_clicked()
 {
     try
-        {
+    {
         if(all_objects.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
         ui->stackedWidget->setCurrentIndex(2);
@@ -158,10 +160,10 @@ void MainWindow::on_refresh_clicked()
         //after
         //zoom to fit
         ui->graphicsView->fitInView(0,0,max_w+40,all_h,Qt::AspectRatioMode::KeepAspectRatio);
-        }catch(Exception &e)
-        {
-           printStatus(ui->status_window,e.what(),DARK_RED);
-        }
+    }catch(Exception &e)
+    {
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
 
 
 }
@@ -181,7 +183,7 @@ void MainWindow::on_zoom_in_clicked()
 void MainWindow::on_zoom_to_fit_clicked()
 {
     //zoom to fit
-    ui->graphicsView->fitInView(0,0,1024,1024,Qt::AspectRatioMode::KeepAspectRatio);
+    ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
 }
 
 void MainWindow::on_clear_screen_clicked()
@@ -200,7 +202,7 @@ void MainWindow::on_all_bins_clicked()
 void MainWindow::on_previous_bin_clicked()
 {
     try
-        {
+    {
         if(all_bins.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
         ui->stackedWidget->setCurrentIndex(2);
@@ -212,14 +214,18 @@ void MainWindow::on_previous_bin_clicked()
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
         QPen outlinePen(QColor(128,0,0,120));
+        QPen binOutlinePen(QColor(0,128,0,120));
         outlinePen.setWidth(1);
+        binOutlinePen.setWidthF(1.4);
+        //
         MyObject obj;
         int used_bins_number=all_bins.length();
         draw_bin_iterator--;
         if(draw_bin_iterator<0)
             draw_bin_iterator=used_bins_number-1;
         BinContainer current_bin=all_bins.at(draw_bin_iterator);
-        scene->addRect(20,20,container_width,container_height, outlinePen,transparent_brush);
+        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
+        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
         if(current_bin.getObjNumber()==0)
             throw Exception("Error:bin is Empty!Nothing to draw!");
         for(int i=0;i<current_bin.getObjNumber();i++)
@@ -230,17 +236,17 @@ void MainWindow::on_previous_bin_clicked()
         //after
         //zoom to fit
         ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
-        }catch(Exception &e)
-        {
-           printStatus(ui->status_window,e.what(),DARK_RED);
-        }
+    }catch(Exception &e)
+    {
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
 
 }
 
 void MainWindow::on_next_bin_clicked()
 {
     try
-        {
+    {
         if(all_bins.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
         ui->stackedWidget->setCurrentIndex(2);
@@ -252,13 +258,17 @@ void MainWindow::on_next_bin_clicked()
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
         QPen outlinePen(QColor(128,0,0,120));
+        QPen binOutlinePen(QColor(0,128,0,120));
         outlinePen.setWidth(1);
+        binOutlinePen.setWidthF(1.4);
+        //
         MyObject obj;
         int used_bins_number=all_bins.length();
         draw_bin_iterator++;
         draw_bin_iterator=draw_bin_iterator%used_bins_number;
         BinContainer current_bin=all_bins.at(draw_bin_iterator);
-        scene->addRect(20,20,container_width,container_height, outlinePen,transparent_brush);
+        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
+        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
         if(current_bin.getObjNumber()==0)
             throw Exception("Error:bin is Empty!Nothing to draw!");
         for(int i=0;i<current_bin.getObjNumber();i++)
@@ -269,10 +279,10 @@ void MainWindow::on_next_bin_clicked()
         //after
         //zoom to fit
         ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
-        }catch(Exception &e)
-        {
-           printStatus(ui->status_window,e.what(),DARK_RED);
-        }
+    }catch(Exception &e)
+    {
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
 }
 
 void MainWindow::on_clear_2_clicked()
@@ -300,12 +310,13 @@ void MainWindow::on_home_2_clicked()
 
 void MainWindow::on_help_2_clicked()
 {
+    ui->stackedWidget->setCurrentIndex(4);
 
 }
 
 void MainWindow::on_settings_2_clicked()
 {
-
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
 void MainWindow::on_load_from_file_clicked()
@@ -329,13 +340,13 @@ void MainWindow::on_load_from_file_clicked()
 void MainWindow::on_run_clicked()
 {
     try
-        {
+    {
         //sorting objects vector descending by area
         quickSort(all_objects,0,all_objects.length()-1);
         //clean entire bin list (prepare for a new packing)
         all_bins.clear();
         //pack rectangles
-        all_bins=packing(all_objects,container_width,container_height,2);
+        all_bins=packing(all_objects,container_width,container_height,placing_step);
         printStatus(ui->status_window,"Status: packing completed",DARK_BLUE);
         if(all_bins.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
@@ -348,11 +359,15 @@ void MainWindow::on_run_clicked()
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
         QPen outlinePen(QColor(128,0,0,120));
+        QPen binOutlinePen(QColor(0,128,0,120));
         outlinePen.setWidth(1);
+        binOutlinePen.setWidthF(1.4);
+        //
         MyObject obj;
         draw_bin_iterator=0;
         BinContainer current_bin=all_bins.at(draw_bin_iterator);
-        scene->addRect(container_width/10,container_height/10,container_width,container_height, outlinePen,transparent_brush);
+        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
+        scene->addRect(container_width/10,container_height/10,container_width,container_height, binOutlinePen,transparent_brush);
         if(current_bin.getObjNumber()<1)
             throw Exception("Error:bin is Empty!Nothing to draw!");
         for(int i=0;i<current_bin.getObjNumber();i++)
@@ -362,11 +377,11 @@ void MainWindow::on_run_clicked()
         }
         //after
         //zoom to fit
-        ui->graphicsView->fitInView(0,0,container_width+container_width/5,container_height+container_height/5,Qt::AspectRatioMode::KeepAspectRatio);
-        }catch(Exception &e)
-        {
-           printStatus(ui->status_window,e.what(),DARK_RED);
-        }
+        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
+    }catch(Exception &e)
+    {
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
 
 
 }
@@ -466,4 +481,39 @@ void MainWindow::on_clear_stored_data_clicked()
     all_bins.clear();
     all_objects.clear();
     printStatus(ui->status_window,"Entire object list cleared.[No more objects]",DARK_BLUE);
+}
+
+void MainWindow::on_home_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_to_packing_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_help_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    placing_step=value;
+}
+
+void MainWindow::on_home_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_to_packing_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_settings_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
 }

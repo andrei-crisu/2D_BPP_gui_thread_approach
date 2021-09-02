@@ -11,6 +11,9 @@ void place(BinContainer &bin,MyObject &obj,double x,double y);
 bool try_to_place(BinContainer&bin,MyObject &obj,double step);
 
 bool overlap(MyObject current_rectangle,MyObject stored_rectangle);
+
 bool overlap_check(BinContainer &bin,MyObject &obj);
+
+bool fit_inside(BinContainer &bin,MyObject &obj);
 
 #endif // PACKING_ALGORITHM_H

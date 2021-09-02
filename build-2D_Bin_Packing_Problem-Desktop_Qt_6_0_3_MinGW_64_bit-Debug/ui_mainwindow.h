@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QStackedWidget>
@@ -114,7 +115,11 @@ public:
     QVBoxLayout *verticalLayout_3;
     QGroupBox *groupBox_5;
     QVBoxLayout *verticalLayout_4;
+    QGroupBox *groupBox_18;
+    QHBoxLayout *horizontalLayout_11;
+    QSplitter *splitter_2;
     QGraphicsView *graphicsView;
+    QTextEdit *statistics_display;
     QGroupBox *groupBox_6;
     QHBoxLayout *horizontalLayout;
     QPushButton *pushButton_17;
@@ -135,6 +140,40 @@ public:
     QPushButton *zoom_to_fit;
     QPushButton *clear_screen;
     QSpacerItem *horizontalSpacer;
+    QWidget *page_4;
+    QVBoxLayout *verticalLayout_12;
+    QGroupBox *groupBox_15;
+    QVBoxLayout *verticalLayout_13;
+    QGroupBox *groupBox_17;
+    QVBoxLayout *verticalLayout_16;
+    QHBoxLayout *horizontalLayout_13;
+    QSpacerItem *horizontalSpacer_12;
+    QVBoxLayout *verticalLayout_15;
+    QSpacerItem *verticalSpacer_3;
+    QGroupBox *groupBox_19;
+    QVBoxLayout *verticalLayout_14;
+    QSpacerItem *verticalSpacer_5;
+    QSlider *horizontalSlider;
+    QSpacerItem *verticalSpacer_6;
+    QSpacerItem *horizontalSpacer_15;
+    QSpacerItem *verticalSpacer_4;
+    QGroupBox *groupBox_16;
+    QHBoxLayout *horizontalLayout_12;
+    QSpacerItem *horizontalSpacer_14;
+    QPushButton *home_4;
+    QPushButton *to_packing;
+    QPushButton *help_4;
+    QWidget *help_page;
+    QVBoxLayout *verticalLayout_17;
+    QGroupBox *groupBox_20;
+    QVBoxLayout *verticalLayout_18;
+    QGroupBox *groupBox_21;
+    QGroupBox *groupBox_23;
+    QHBoxLayout *horizontalLayout_15;
+    QSpacerItem *horizontalSpacer_16;
+    QPushButton *home_5;
+    QPushButton *to_packing_2;
+    QPushButton *settings_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -153,8 +192,6 @@ public:
         centralwidget->setStyleSheet(QString::fromUtf8("QWidget#centralwidget\n"
 "{\n"
 "		background-color: rgb(232, 232, 194);\n"
-"\n"
-"\n"
 "}\n"
 ""));
         verticalLayout = new QVBoxLayout(centralwidget);
@@ -698,7 +735,7 @@ public:
         status_window->setStyleSheet(QString::fromUtf8("QTextEdit\n"
 "{\n"
 "color: rgb(40, 46, 58);\n"
-"background-color: rgba(45, 128, 100, 80);\n"
+"background-color: rgba(45, 128, 100, 30);\n"
 "}"));
         status_window->setReadOnly(true);
 
@@ -942,18 +979,53 @@ public:
         verticalLayout_4 = new QVBoxLayout(groupBox_5);
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        graphicsView = new QGraphicsView(groupBox_5);
+        verticalLayout_4->setContentsMargins(0, 0, 2, 2);
+        groupBox_18 = new QGroupBox(groupBox_5);
+        groupBox_18->setObjectName(QString::fromUtf8("groupBox_18"));
+        horizontalLayout_11 = new QHBoxLayout(groupBox_18);
+        horizontalLayout_11->setSpacing(0);
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
+        splitter_2 = new QSplitter(groupBox_18);
+        splitter_2->setObjectName(QString::fromUtf8("splitter_2"));
+        splitter_2->setStyleSheet(QString::fromUtf8("QSplitter::handle\n"
+"{\n"
+"	background-color: rgba(45, 128, 100, 160);\n"
+"}"));
+        splitter_2->setOrientation(Qt::Horizontal);
+        splitter_2->setHandleWidth(3);
+        splitter_2->setChildrenCollapsible(false);
+        graphicsView = new QGraphicsView(splitter_2);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setMinimumSize(QSize(400, 0));
         graphicsView->setStyleSheet(QString::fromUtf8("background-color: rgb(232, 232, 194);"));
         graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        splitter_2->addWidget(graphicsView);
+        statistics_display = new QTextEdit(splitter_2);
+        statistics_display->setObjectName(QString::fromUtf8("statistics_display"));
+        statistics_display->setMinimumSize(QSize(20, 0));
+        statistics_display->setMaximumSize(QSize(300, 16777215));
+        QFont font1;
+        font1.setPointSize(14);
+        statistics_display->setFont(font1);
+        statistics_display->setStyleSheet(QString::fromUtf8("QTextEdit\n"
+"{\n"
+"color: rgb(40, 46, 58);\n"
+"background-color: rgba(45, 128, 100, 30);\n"
+"}"));
+        statistics_display->setReadOnly(true);
+        splitter_2->addWidget(statistics_display);
 
-        verticalLayout_4->addWidget(graphicsView);
+        horizontalLayout_11->addWidget(splitter_2);
+
+
+        verticalLayout_4->addWidget(groupBox_18);
 
         groupBox_6 = new QGroupBox(groupBox_5);
         groupBox_6->setObjectName(QString::fromUtf8("groupBox_6"));
         groupBox_6->setMinimumSize(QSize(0, 34));
+        groupBox_6->setMaximumSize(QSize(16777215, 34));
         groupBox_6->setStyleSheet(QString::fromUtf8("QGroupBox\n"
 "{\n"
 "background-color:none;\n"
@@ -1347,6 +1419,334 @@ public:
         gridLayout->addWidget(groupBox_2, 0, 0, 1, 1);
 
         stackedWidget->addWidget(page_2);
+        page_4 = new QWidget();
+        page_4->setObjectName(QString::fromUtf8("page_4"));
+        verticalLayout_12 = new QVBoxLayout(page_4);
+        verticalLayout_12->setSpacing(0);
+        verticalLayout_12->setObjectName(QString::fromUtf8("verticalLayout_12"));
+        verticalLayout_12->setContentsMargins(0, 0, 0, 0);
+        groupBox_15 = new QGroupBox(page_4);
+        groupBox_15->setObjectName(QString::fromUtf8("groupBox_15"));
+        groupBox_15->setStyleSheet(QString::fromUtf8(""));
+        verticalLayout_13 = new QVBoxLayout(groupBox_15);
+        verticalLayout_13->setSpacing(0);
+        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        verticalLayout_13->setContentsMargins(0, 0, 0, 0);
+        groupBox_17 = new QGroupBox(groupBox_15);
+        groupBox_17->setObjectName(QString::fromUtf8("groupBox_17"));
+        verticalLayout_16 = new QVBoxLayout(groupBox_17);
+        verticalLayout_16->setSpacing(0);
+        verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
+        verticalLayout_16->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
+        horizontalSpacer_12 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_12);
+
+        verticalLayout_15 = new QVBoxLayout();
+        verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
+        verticalSpacer_3 = new QSpacerItem(20, 80, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        verticalLayout_15->addItem(verticalSpacer_3);
+
+        groupBox_19 = new QGroupBox(groupBox_17);
+        groupBox_19->setObjectName(QString::fromUtf8("groupBox_19"));
+        groupBox_19->setFont(font);
+        groupBox_19->setStyleSheet(QString::fromUtf8("QGroupBox #groupBox_19{ \n"
+"     border:2px  solid  #2d8064; \n"
+"	color:#2d8064; \n"
+" }"));
+        verticalLayout_14 = new QVBoxLayout(groupBox_19);
+        verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
+        verticalSpacer_5 = new QSpacerItem(20, 30, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_14->addItem(verticalSpacer_5);
+
+        horizontalSlider = new QSlider(groupBox_19);
+        horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
+        horizontalSlider->setMinimumSize(QSize(300, 20));
+        horizontalSlider->setMaximumSize(QSize(16777215, 20));
+        horizontalSlider->setStyleSheet(QString::fromUtf8("QSlider::groove:horizontal {\n"
+"border: 2px solid #2d8064;\n"
+"height: 10px;\n"
+"border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::sub-page:horizontal {\n"
+"border: 1px solid #777;\n"
+"height: 10px;\n"
+"background-color: rgba(45, 128, 100, 144);\n"
+"border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::add-page:horizontal {\n"
+"background-color: rgba(45, 128, 100, 0);\n"
+"border: 1px solid #777;\n"
+"height: 10px;\n"
+"border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"background-color: rgba(45, 128, 100, 255);\n"
+"border: 1px solid #777;\n"
+"width: 32px;\n"
+"margin-top: -2px;\n"
+"margin-bottom: -2px;\n"
+"border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal:hover \n"
+"{\n"
+"border: 1px solid #444;\n"
+"border-radius: 4px;\n"
+"background-color: rgb(167, 206, 151);\n"
+"}\n"
+"\n"
+""));
+        horizontalSlider->setMinimum(1);
+        horizontalSlider->setMaximum(100);
+        horizontalSlider->setSingleStep(1);
+        horizontalSlider->setPageStep(1);
+        horizontalSlider->setValue(5);
+        horizontalSlider->setSliderPosition(5);
+        horizontalSlider->setOrientation(Qt::Horizontal);
+
+        verticalLayout_14->addWidget(horizontalSlider);
+
+        verticalSpacer_6 = new QSpacerItem(20, 30, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_14->addItem(verticalSpacer_6);
+
+
+        verticalLayout_15->addWidget(groupBox_19);
+
+
+        horizontalLayout_13->addLayout(verticalLayout_15);
+
+        horizontalSpacer_15 = new QSpacerItem(118, 27, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_15);
+
+
+        verticalLayout_16->addLayout(horizontalLayout_13);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_16->addItem(verticalSpacer_4);
+
+
+        verticalLayout_13->addWidget(groupBox_17);
+
+        groupBox_16 = new QGroupBox(groupBox_15);
+        groupBox_16->setObjectName(QString::fromUtf8("groupBox_16"));
+        groupBox_16->setMinimumSize(QSize(0, 34));
+        groupBox_16->setMaximumSize(QSize(16777215, 34));
+        groupBox_16->setStyleSheet(QString::fromUtf8("QGroupBox\n"
+"{\n"
+"background-color:none;\n"
+"}"));
+        horizontalLayout_12 = new QHBoxLayout(groupBox_16);
+        horizontalLayout_12->setSpacing(2);
+        horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
+        horizontalLayout_12->setContentsMargins(0, 0, 20, 0);
+        horizontalSpacer_14 = new QSpacerItem(292, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_12->addItem(horizontalSpacer_14);
+
+        home_4 = new QPushButton(groupBox_16);
+        home_4->setObjectName(QString::fromUtf8("home_4"));
+        sizePolicy.setHeightForWidth(home_4->sizePolicy().hasHeightForWidth());
+        home_4->setSizePolicy(sizePolicy);
+        home_4->setMinimumSize(QSize(50, 30));
+        home_4->setMaximumSize(QSize(50, 30));
+        home_4->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        home_4->setIcon(icon12);
+        home_4->setIconSize(QSize(28, 28));
+
+        horizontalLayout_12->addWidget(home_4);
+
+        to_packing = new QPushButton(groupBox_16);
+        to_packing->setObjectName(QString::fromUtf8("to_packing"));
+        sizePolicy.setHeightForWidth(to_packing->sizePolicy().hasHeightForWidth());
+        to_packing->setSizePolicy(sizePolicy);
+        to_packing->setMinimumSize(QSize(50, 30));
+        to_packing->setMaximumSize(QSize(50, 30));
+        to_packing->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        QIcon icon21;
+        icon21.addFile(QString::fromUtf8(":/icons/app_icons/bpp.png"), QSize(), QIcon::Disabled, QIcon::On);
+        to_packing->setIcon(icon21);
+        to_packing->setIconSize(QSize(26, 26));
+
+        horizontalLayout_12->addWidget(to_packing);
+
+        help_4 = new QPushButton(groupBox_16);
+        help_4->setObjectName(QString::fromUtf8("help_4"));
+        sizePolicy.setHeightForWidth(help_4->sizePolicy().hasHeightForWidth());
+        help_4->setSizePolicy(sizePolicy);
+        help_4->setMinimumSize(QSize(50, 30));
+        help_4->setMaximumSize(QSize(50, 30));
+        help_4->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        help_4->setIcon(icon3);
+        help_4->setIconSize(QSize(24, 24));
+
+        horizontalLayout_12->addWidget(help_4);
+
+
+        verticalLayout_13->addWidget(groupBox_16);
+
+
+        verticalLayout_12->addWidget(groupBox_15);
+
+        stackedWidget->addWidget(page_4);
+        help_page = new QWidget();
+        help_page->setObjectName(QString::fromUtf8("help_page"));
+        verticalLayout_17 = new QVBoxLayout(help_page);
+        verticalLayout_17->setSpacing(0);
+        verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
+        verticalLayout_17->setContentsMargins(0, 0, 0, 0);
+        groupBox_20 = new QGroupBox(help_page);
+        groupBox_20->setObjectName(QString::fromUtf8("groupBox_20"));
+        verticalLayout_18 = new QVBoxLayout(groupBox_20);
+        verticalLayout_18->setSpacing(0);
+        verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
+        verticalLayout_18->setContentsMargins(0, 0, 0, 0);
+        groupBox_21 = new QGroupBox(groupBox_20);
+        groupBox_21->setObjectName(QString::fromUtf8("groupBox_21"));
+
+        verticalLayout_18->addWidget(groupBox_21);
+
+        groupBox_23 = new QGroupBox(groupBox_20);
+        groupBox_23->setObjectName(QString::fromUtf8("groupBox_23"));
+        groupBox_23->setMinimumSize(QSize(0, 34));
+        groupBox_23->setMaximumSize(QSize(16777215, 34));
+        groupBox_23->setStyleSheet(QString::fromUtf8("QGroupBox\n"
+"{\n"
+"background-color:none;\n"
+"}"));
+        horizontalLayout_15 = new QHBoxLayout(groupBox_23);
+        horizontalLayout_15->setSpacing(2);
+        horizontalLayout_15->setObjectName(QString::fromUtf8("horizontalLayout_15"));
+        horizontalLayout_15->setContentsMargins(0, 0, 20, 0);
+        horizontalSpacer_16 = new QSpacerItem(292, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_15->addItem(horizontalSpacer_16);
+
+        home_5 = new QPushButton(groupBox_23);
+        home_5->setObjectName(QString::fromUtf8("home_5"));
+        sizePolicy.setHeightForWidth(home_5->sizePolicy().hasHeightForWidth());
+        home_5->setSizePolicy(sizePolicy);
+        home_5->setMinimumSize(QSize(50, 30));
+        home_5->setMaximumSize(QSize(50, 30));
+        home_5->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        home_5->setIcon(icon12);
+        home_5->setIconSize(QSize(28, 28));
+
+        horizontalLayout_15->addWidget(home_5);
+
+        to_packing_2 = new QPushButton(groupBox_23);
+        to_packing_2->setObjectName(QString::fromUtf8("to_packing_2"));
+        sizePolicy.setHeightForWidth(to_packing_2->sizePolicy().hasHeightForWidth());
+        to_packing_2->setSizePolicy(sizePolicy);
+        to_packing_2->setMinimumSize(QSize(50, 30));
+        to_packing_2->setMaximumSize(QSize(50, 30));
+        to_packing_2->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        to_packing_2->setIcon(icon21);
+        to_packing_2->setIconSize(QSize(26, 26));
+
+        horizontalLayout_15->addWidget(to_packing_2);
+
+        settings_3 = new QPushButton(groupBox_23);
+        settings_3->setObjectName(QString::fromUtf8("settings_3"));
+        sizePolicy.setHeightForWidth(settings_3->sizePolicy().hasHeightForWidth());
+        settings_3->setSizePolicy(sizePolicy);
+        settings_3->setMinimumSize(QSize(50, 30));
+        settings_3->setMaximumSize(QSize(50, 30));
+        settings_3->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }"));
+        settings_3->setIcon(icon2);
+        settings_3->setIconSize(QSize(24, 24));
+
+        horizontalLayout_15->addWidget(settings_3);
+
+
+        verticalLayout_18->addWidget(groupBox_23);
+
+
+        verticalLayout_17->addWidget(groupBox_20);
+
+        stackedWidget->addWidget(help_page);
 
         verticalLayout->addWidget(stackedWidget);
 
@@ -1361,7 +1761,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1449,6 +1849,7 @@ public:
         groupBox_2->setTitle(QString());
         groupBox_4->setTitle(QString());
         groupBox_5->setTitle(QString());
+        groupBox_18->setTitle(QString());
         groupBox_6->setTitle(QString());
         pushButton_17->setText(QString());
         pushButton_16->setText(QString());
@@ -1501,6 +1902,37 @@ public:
         clear_screen->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         clear_screen->setText(QString());
+        groupBox_15->setTitle(QString());
+        groupBox_17->setTitle(QString());
+        groupBox_19->setTitle(QCoreApplication::translate("MainWindow", "Step size", nullptr));
+        groupBox_16->setTitle(QString());
+#if QT_CONFIG(tooltip)
+        home_4->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">home</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        home_4->setText(QString());
+#if QT_CONFIG(tooltip)
+        to_packing->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">to packing method</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        to_packing->setText(QString());
+#if QT_CONFIG(tooltip)
+        help_4->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">help</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        help_4->setText(QString());
+        groupBox_20->setTitle(QString());
+        groupBox_21->setTitle(QString());
+        groupBox_23->setTitle(QString());
+#if QT_CONFIG(tooltip)
+        home_5->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">home</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        home_5->setText(QString());
+#if QT_CONFIG(tooltip)
+        to_packing_2->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">to packing method</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        to_packing_2->setText(QString());
+#if QT_CONFIG(tooltip)
+        settings_3->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">settings</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        settings_3->setText(QString());
     } // retranslateUi
 
 };

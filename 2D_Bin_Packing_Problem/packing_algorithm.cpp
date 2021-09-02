@@ -27,7 +27,13 @@ QVector<BinContainer> packing(QVector<MyObject> obj,double bin_width,double bin_
                 if(k==used_bins.length()-1)
                 {
                     current_bin=BinContainer(bin_width,bin_height);
-                    place(current_bin,current_obj,0,0);
+                    if(fit_inside(current_bin,current_obj))
+                        place(current_bin,current_obj,0,0);
+                    else
+                    {
+                        current_obj.rotate_90();
+                        place(current_bin,current_obj,0,0);
+                    }
                     used_bins.append(current_bin);
                     break;
                 }
@@ -43,15 +49,31 @@ QVector<BinContainer> packing(QVector<MyObject> obj,double bin_width,double bin_
                 }
                 else
                 {
-                    if(k==used_bins.length()-1)
+                    current_obj.rotate_90();
+                    if(try_to_place(current_bin,current_obj,step)==true)
                     {
-                        current_bin=BinContainer(bin_width,bin_height);
-                        place(current_bin,current_obj,0,0);
-                        used_bins.append(current_bin);
+                        used_bins.replace(k,current_bin);
                         break;
                     }
                     else
-                        continue;
+                        if(k==used_bins.length()-1)
+                        {
+                            current_bin=BinContainer(bin_width,bin_height);
+                            if(fit_inside(current_bin,current_obj))
+                                place(current_bin,current_obj,0,0);
+                            else
+                            {
+                                current_obj.rotate_90();
+                                place(current_bin,current_obj,0,0);
+                            }
+                            used_bins.append(current_bin);
+                            break;
+                        }
+                        else
+                        {
+                            current_obj.rotate_90();
+                            continue;
+                        }
                 }
             }
 
@@ -84,7 +106,7 @@ void place(BinContainer &bin,MyObject &obj,double x,double y)
 
 bool try_to_place(BinContainer&bin,MyObject &obj,double step)
 {
-    if(bin.getObjNumber()==0)
+    if(bin.getObjNumber()==0 && fit_inside(bin,obj)==true)
     {
         place(bin,obj,0,0);
         return true;
@@ -94,7 +116,7 @@ bool try_to_place(BinContainer&bin,MyObject &obj,double step)
         {
             obj.setX(i);
             obj.setY(j);
-            if(overlap_check(bin,obj)==false)
+            if(overlap_check(bin,obj)==false&&fit_inside(bin,obj)==true)
             {
                 place(bin,obj,i,j);
                 return true;
@@ -106,12 +128,12 @@ bool try_to_place(BinContainer&bin,MyObject &obj,double step)
 
 bool overlap(MyObject current_rectangle,MyObject stored_rectangle)
 {
-    if((current_rectangle.getX()>stored_rectangle.getX()+stored_rectangle.getWidth())||
-            (stored_rectangle.getX()>current_rectangle.getX()+current_rectangle.getWidth()))
+    if((current_rectangle.getX()>=stored_rectangle.getX()+stored_rectangle.getWidth())||
+            (stored_rectangle.getX()>=current_rectangle.getX()+current_rectangle.getWidth()))
         return false;
 
-    if((current_rectangle.getY()>stored_rectangle.getY()+stored_rectangle.getHeight())||
-            (stored_rectangle.getY()>current_rectangle.getY()+current_rectangle.getHeight()))
+    if((current_rectangle.getY()>=stored_rectangle.getY()+stored_rectangle.getHeight())||
+            (stored_rectangle.getY()>=current_rectangle.getY()+current_rectangle.getHeight()))
         return false;
     return true;
 
@@ -128,4 +150,12 @@ bool overlap_check(BinContainer &bin,MyObject &obj)
         }
     }
     return false;
+}
+
+bool fit_inside(BinContainer &bin,MyObject &obj)
+{
+    if(obj.getWidth()<=bin.getWidth()&&obj.getHeight()<=bin.getHeight())
+        return true;
+    else
+        return false;
 }
