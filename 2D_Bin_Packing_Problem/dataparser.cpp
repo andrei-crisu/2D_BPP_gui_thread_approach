@@ -24,21 +24,21 @@ void DataParser::parse()
     QRegularExpression reg("\\;");
     QRegularExpression reg2("\\,");
     str.remove(space);
-    qDebug()<<str;
     if(str.at(str.length()-1)==';')
         str=str.left(str.length()-1);
-    qDebug()<<str;
     if(data_string.length()<4)
         throw Exception("Data string loaded from file : too short [ wrong syntax ]");
     QStringList firstList=str.split(reg);
-    qDebug()<<firstList;
     for(int i=0;i<firstList.length();i++)
     {
         QStringList secondList=firstList.at(i).split(reg2);
         if(secondList.length()!=2)
-            throw Exception("Error:data provided contain mistakes!The rectangle has"
-" 2 dimensions (width/height).Data with mistakes: [empty data] or [too many commas]:"
-" =>mistakes in:["+firstList.at(i)+"]");
+            throw Exception("Error: data provided contain mistakes: "
+"[empty data] or [too many commas] or [not allowed characters :: only digits allowed] "
+" => mistakes in: ["+firstList.at(i)+"] "
+" not a valid pair (width,height);A semicolon separates 2 pairs (width,height) and "
+" a comma separates elementes in a pair.  Valid pairs should be entered like:<br>"
+" width,height; <br> an example: <br> 100,40;");
         else
         {
             w_string=secondList.at(0);

@@ -5,6 +5,7 @@ release/io_interface.o
 release/main.o
 release/mainwindow.o
 release/myobject.o
+release/packing_algorithm.o
 release/sorting_algorithm.o
 release/qrc_app_resources.o
 release/moc_mainwindow.o

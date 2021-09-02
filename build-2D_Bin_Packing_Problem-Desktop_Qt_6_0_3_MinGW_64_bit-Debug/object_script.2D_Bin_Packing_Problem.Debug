@@ -5,6 +5,7 @@ debug/io_interface.o
 debug/main.o
 debug/mainwindow.o
 debug/myobject.o
+debug/packing_algorithm.o
 debug/sorting_algorithm.o
 debug/qrc_app_resources.o
 debug/moc_mainwindow.o

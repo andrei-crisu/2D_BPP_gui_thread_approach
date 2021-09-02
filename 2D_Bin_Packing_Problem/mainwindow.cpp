@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
     container_height=0;
     container_width=0;
+    draw_bin_iterator=0;
 
 }
 
@@ -122,24 +123,47 @@ void MainWindow::on_settings_clicked()
 
 void MainWindow::on_refresh_clicked()
 {
-    //clear first
-    scene->clear();
-    ui->graphicsView->viewport()->update();
-    ui->graphicsView->items().clear();
-    //than draw
-    QBrush greenBrush(QColor(164, 147, 147));
-    QBrush blueBrush(QColor(76,187,23));
-    QPen outlinePen(QColor(218,112,214));
-    outlinePen.setWidth(1);
-    QGraphicsRectItem *rect=scene->addRect(0,0,1000,1000,outlinePen);
-    for(int i=0,j=40;i<=400;i+=80,j+=80)
-    {
-        scene->addRect(j, j, 40, 40, outlinePen, blueBrush);
-        scene->addRect(i,i, 40, 40, outlinePen, greenBrush);
-    }
-    //after
-    //zoom to fit
-    ui->graphicsView->fitInView(0,0,1024,1024,Qt::AspectRatioMode::KeepAspectRatio);
+    try
+        {
+        if(all_objects.isEmpty())
+            throw Exception ("Empty: No any rectangle to display!");
+        ui->stackedWidget->setCurrentIndex(2);
+        //sorting objects vector descending by area
+        quickSort(all_objects,0,all_objects.length()-1);
+        //clear first
+        scene->clear();
+        ui->graphicsView->viewport()->update();
+        ui->graphicsView->items().clear();
+        //than draw
+        QBrush brush(QColor(14,30,55,40));
+        QPen outlinePen(QColor(128,0,0,120));
+        outlinePen.setWidth(1);
+        //QGraphicsRectItem *rect=scene->addRect(0,0,1000,1000,outlinePen);
+        MyObject obj;
+        double max_w,max_h,all_w,all_h;
+        max_w=max_h=0;
+        all_h=all_w=20;
+        for(int i=0;i<all_objects.length();i++)
+        {
+            obj=all_objects.at(i);
+            if(obj.getWidth()>max_w)
+                max_w=obj.getWidth();
+            if(obj.getHeight()>max_h)
+                max_h=obj.getHeight();
+            scene->addRect(20,all_h, obj.getWidth(),obj.getHeight(), outlinePen,brush);
+            all_h+=obj.getHeight();
+            all_h+=2;
+            all_w+=obj.getWidth();
+        }
+        //after
+        //zoom to fit
+        ui->graphicsView->fitInView(0,0,max_w+40,all_h,Qt::AspectRatioMode::KeepAspectRatio);
+        }catch(Exception &e)
+        {
+           printStatus(ui->status_window,e.what(),DARK_RED);
+        }
+
+
 }
 
 void MainWindow::on_zoom_out_clicked()
@@ -175,12 +199,80 @@ void MainWindow::on_all_bins_clicked()
 
 void MainWindow::on_previous_bin_clicked()
 {
+    try
+        {
+        if(all_bins.isEmpty())
+            throw Exception ("Empty: No any rectangle to display!");
+        ui->stackedWidget->setCurrentIndex(2);
+        //clear first
+        scene->clear();
+        ui->graphicsView->viewport()->update();
+        ui->graphicsView->items().clear();
+        //than draw
+        QBrush brush(QColor(14,30,55,40));
+        QBrush transparent_brush(QColor(14,30,55,0));
+        QPen outlinePen(QColor(128,0,0,120));
+        outlinePen.setWidth(1);
+        MyObject obj;
+        int used_bins_number=all_bins.length();
+        draw_bin_iterator--;
+        if(draw_bin_iterator<0)
+            draw_bin_iterator=used_bins_number-1;
+        BinContainer current_bin=all_bins.at(draw_bin_iterator);
+        scene->addRect(20,20,container_width,container_height, outlinePen,transparent_brush);
+        if(current_bin.getObjNumber()==0)
+            throw Exception("Error:bin is Empty!Nothing to draw!");
+        for(int i=0;i<current_bin.getObjNumber();i++)
+        {
+            obj=current_bin.getObjAt(i);
+            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
+        }
+        //after
+        //zoom to fit
+        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
+        }catch(Exception &e)
+        {
+           printStatus(ui->status_window,e.what(),DARK_RED);
+        }
 
 }
 
 void MainWindow::on_next_bin_clicked()
 {
-
+    try
+        {
+        if(all_bins.isEmpty())
+            throw Exception ("Empty: No any rectangle to display!");
+        ui->stackedWidget->setCurrentIndex(2);
+        //clear first
+        scene->clear();
+        ui->graphicsView->viewport()->update();
+        ui->graphicsView->items().clear();
+        //than draw
+        QBrush brush(QColor(14,30,55,40));
+        QBrush transparent_brush(QColor(14,30,55,0));
+        QPen outlinePen(QColor(128,0,0,120));
+        outlinePen.setWidth(1);
+        MyObject obj;
+        int used_bins_number=all_bins.length();
+        draw_bin_iterator++;
+        draw_bin_iterator=draw_bin_iterator%used_bins_number;
+        BinContainer current_bin=all_bins.at(draw_bin_iterator);
+        scene->addRect(20,20,container_width,container_height, outlinePen,transparent_brush);
+        if(current_bin.getObjNumber()==0)
+            throw Exception("Error:bin is Empty!Nothing to draw!");
+        for(int i=0;i<current_bin.getObjNumber();i++)
+        {
+            obj=current_bin.getObjAt(i);
+            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
+        }
+        //after
+        //zoom to fit
+        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
+        }catch(Exception &e)
+        {
+           printStatus(ui->status_window,e.what(),DARK_RED);
+        }
 }
 
 void MainWindow::on_clear_2_clicked()
@@ -236,46 +328,44 @@ void MainWindow::on_load_from_file_clicked()
 
 void MainWindow::on_run_clicked()
 {
-    //ui->stackedWidget->setCurrentIndex(2);
     try
         {
-        if(all_objects.isEmpty())
-            throw Exception ("Empty: No any rectangle to display!");
-        ui->stackedWidget->setCurrentIndex(2);
         //sorting objects vector descending by area
         quickSort(all_objects,0,all_objects.length()-1);
+        //clean entire bin list (prepare for a new packing)
+        all_bins.clear();
+        //pack rectangles
+        all_bins=packing(all_objects,container_width,container_height,2);
+        printStatus(ui->status_window,"Status: packing completed",DARK_BLUE);
+        if(all_bins.isEmpty())
+            throw Exception ("Empty: No any rectangle to display!");
+        ui->stackedWidget->setCurrentIndex(2);
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
         ui->graphicsView->items().clear();
         //than draw
-        QBrush brush(QColor("#0e1e35E1"));
-        QBrush blueBrush(QColor(76,187,23));
-        QPen outlinePen(QColor(128,0,0,200));
+        QBrush brush(QColor(14,30,55,40));
+        QBrush transparent_brush(QColor(14,30,55,0));
+        QPen outlinePen(QColor(128,0,0,120));
         outlinePen.setWidth(1);
-        //QGraphicsRectItem *rect=scene->addRect(0,0,1000,1000,outlinePen);
         MyObject obj;
-        double max_w,max_h,all_w,all_h;
-        max_w=max_h=0;
-        all_h=all_w=20;
-        for(int i=0;i<all_objects.length();i++)
+        draw_bin_iterator=0;
+        BinContainer current_bin=all_bins.at(draw_bin_iterator);
+        scene->addRect(container_width/10,container_height/10,container_width,container_height, outlinePen,transparent_brush);
+        if(current_bin.getObjNumber()<1)
+            throw Exception("Error:bin is Empty!Nothing to draw!");
+        for(int i=0;i<current_bin.getObjNumber();i++)
         {
-            obj=all_objects.at(i);
-            if(obj.getWidth()>max_w)
-                max_w=obj.getWidth();
-            if(obj.getHeight()>max_h)
-                max_h=obj.getHeight();
-            scene->addRect(20,all_h, obj.getWidth(),obj.getHeight(), outlinePen,brush);
-            all_h+=obj.getHeight();
-            all_h+=2;
-            all_w+=obj.getWidth();
+            obj=current_bin.getObjAt(i);
+            scene->addRect(container_width/10+obj.getX(),container_height/10+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
         }
         //after
         //zoom to fit
-        ui->graphicsView->fitInView(0,0,max_w+40,all_h,Qt::AspectRatioMode::KeepAspectRatio);
+        ui->graphicsView->fitInView(0,0,container_width+container_width/5,container_height+container_height/5,Qt::AspectRatioMode::KeepAspectRatio);
         }catch(Exception &e)
         {
-           printOutput(ui->status_window,e.what(),DARK_RED);
+           printStatus(ui->status_window,e.what(),DARK_RED);
         }
 
 
@@ -371,7 +461,9 @@ void MainWindow::on_set_container_clicked()
 
 void MainWindow::on_clear_stored_data_clicked()
 {
-    container_height=container_height=0;
+    container_height=0;
+    container_width=0;
     all_bins.clear();
     all_objects.clear();
+    printStatus(ui->status_window,"Entire object list cleared.[No more objects]",DARK_BLUE);
 }

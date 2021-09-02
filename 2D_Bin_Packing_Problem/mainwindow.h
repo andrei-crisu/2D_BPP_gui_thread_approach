@@ -14,6 +14,7 @@
 #include"myobject.h"
 #include "bincontainer.h"
 #include"sorting_algorithm.h"
+#include"packing_algorithm.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -92,6 +93,7 @@ private:
     QVector<MyObject> all_objects;
     QVector<BinContainer> all_bins;
     double container_width,container_height;
+    int draw_bin_iterator;
 
 };
 #endif // MAINWINDOW_H

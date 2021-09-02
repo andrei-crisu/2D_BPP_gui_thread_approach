@@ -17,6 +17,17 @@ BinContainer::BinContainer(double w,double h):bin()
     binArea=area();
 }
 
+BinContainer::BinContainer(const BinContainer &other)
+{
+    bin=other.bin;
+    width=other.width;
+    height=other.height;
+    objNumber=other.objNumber;
+    usedArea=other.usedArea;
+    binArea=other.binArea;
+}
+
+
 double BinContainer::getWidth()
 {
     return width;
@@ -30,6 +41,12 @@ double BinContainer::getHeight()
 double BinContainer::getArea()
 {
     return binArea;
+}
+
+double BinContainer::getFreeArea()
+{
+    double freeArea=getArea()-usedArea;
+    return freeArea;
 }
 
 void BinContainer::setSize(double w, double h)
@@ -47,13 +64,31 @@ MyObject BinContainer::getObjAt(int i)
         return bin.at(i);
 }
 
-MyObject BinContainer::appendObj(MyObject other)
+MyObject BinContainer::appendObj(MyObject &other)
 {
     objNumber++;
     bin.append(other);
+    usedArea=usedArea+other.getArea();
 }
 
 double BinContainer::area()
 {
     return width*height;
+}
+
+int BinContainer::getObjNumber()
+{
+    return objNumber;
+}
+
+BinContainer&  BinContainer::operator=(const BinContainer &other)
+{
+
+    bin=other.bin;
+    width=other.width;
+    height=other.height;
+    objNumber=other.objNumber;
+    usedArea=other.usedArea;
+    binArea=other.binArea;
+    return  *this;
 }

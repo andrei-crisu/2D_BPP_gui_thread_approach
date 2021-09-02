@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     myobject.cpp \
+    packing_algorithm.cpp \
     sorting_algorithm.cpp
 
 HEADERS += \
@@ -26,6 +27,7 @@ HEADERS += \
     mainwindow.h \
     my_constants.h \
     myobject.h \
+    packing_algorithm.h \
     sorting_algorithm.h
 
 FORMS += \

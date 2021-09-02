@@ -1,3 +1,4 @@
+
 #include"sorting_algorithm.h"
 //descending quickSort
 int partition(QVector<MyObject> &obj_list, int low, int high) {
