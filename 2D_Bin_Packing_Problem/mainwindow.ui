@@ -57,7 +57,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page">
        <property name="styleSheet">
@@ -634,6 +634,12 @@ background-color: rgba(45, 128, 100, 30);
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
       border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
+      border-style:solid;
   }</string>
                               </property>
                               <property name="text">
@@ -840,6 +846,12 @@ background-color: rgba(45, 128, 100, 30);
   QPushButton:hover:!pressed {
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
       border-style:solid;
   }</string>
                        </property>
@@ -1076,6 +1088,12 @@ background-color: rgba(45, 128, 100, 30);
   QPushButton:hover:!pressed {
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
       border-style:solid;
   }</string>
                        </property>
@@ -1361,6 +1379,12 @@ background-color:none;
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
       border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
+      border-style:solid;
   }</string>
                     </property>
                     <property name="text">
@@ -1423,7 +1447,7 @@ background-color:none;
             <number>0</number>
            </property>
            <property name="rightMargin">
-            <number>20</number>
+            <number>10</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
@@ -1440,6 +1464,69 @@ background-color:none;
               </size>
              </property>
             </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="stop">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;forcibly finish the packing task&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">  QPushButton {
+	 background-color: rgba(41, 90, 86, 80);
+	  border-color: rgb(41, 90, 86);
+      border-style:solid;
+      border-width:1px;
+      font:  14px; 
+	  color: rgb(41, 90, 86);
+  }
+  QPushButton:hover:!pressed {
+	 background-color: rgba(167, 206, 151,120);
+	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
+      border-style:solid;
+  }</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normalon>:/icons/app_icons/end_task.png</normalon>
+              </iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>26</width>
+               <height>26</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="clear_stored_data">
@@ -1476,6 +1563,12 @@ background-color:none;
   QPushButton:hover:!pressed {
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
       border-style:solid;
   }</string>
              </property>
@@ -1530,6 +1623,12 @@ background-color:none;
   QPushButton:hover:!pressed {
 	 background-color: rgba(167, 206, 151,120);
 	  border-color: rgba(41, 90, 86,164);
+      border-style:solid;
+  }
+
+QPushButton:disabled {
+	  background-color: rgba(207, 246, 191,90);
+	  border-color: rgba(41, 90, 86,90);
       border-style:solid;
   }</string>
              </property>
@@ -1961,150 +2060,33 @@ background-color:none;
                      <number>0</number>
                     </property>
                     <item>
-                     <widget class="QPushButton" name="pushButton_17">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
+                     <spacer name="horizontalSpacer_13">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
                       </property>
-                      <property name="minimumSize">
+                      <property name="sizeType">
+                       <enum>QSizePolicy::Fixed</enum>
+                      </property>
+                      <property name="sizeHint" stdset="0">
                        <size>
-                        <width>50</width>
-                        <height>30</height>
+                        <width>200</width>
+                        <height>20</height>
                        </size>
                       </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">  QPushButton {
-	 background-color: rgba(41, 90, 86, 80);
-	  border-color: rgb(41, 90, 86);
-      border-style:solid;
-      border-width:1px;
-      font:  14px; 
-	  color: rgb(41, 90, 86);
-  }
-  QPushButton:hover:!pressed {
-	 background-color: rgba(167, 206, 151,120);
-	  border-color: rgba(41, 90, 86,164);
-      border-style:solid;
-  }</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>28</width>
-                        <height>28</height>
-                       </size>
-                      </property>
-                     </widget>
+                     </spacer>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_16">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
+                     <spacer name="horizontalSpacer_17">
+                      <property name="orientation">
+                       <enum>Qt::Horizontal</enum>
                       </property>
-                      <property name="minimumSize">
+                      <property name="sizeHint" stdset="0">
                        <size>
-                        <width>50</width>
-                        <height>30</height>
+                        <width>40</width>
+                        <height>20</height>
                        </size>
                       </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">  QPushButton {
-	 background-color: rgba(41, 90, 86, 80);
-	  border-color: rgb(41, 90, 86);
-      border-style:solid;
-      border-width:1px;
-      font:  14px; 
-	  color: rgb(41, 90, 86);
-  }
-  QPushButton:hover:!pressed {
-	 background-color: rgba(167, 206, 151,120);
-	  border-color: rgba(41, 90, 86,164);
-      border-style:solid;
-  }</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>28</width>
-                        <height>28</height>
-                       </size>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="all_bins">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="minimumSize">
-                       <size>
-                        <width>50</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="maximumSize">
-                       <size>
-                        <width>50</width>
-                        <height>30</height>
-                       </size>
-                      </property>
-                      <property name="toolTip">
-                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;show all bins&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                      </property>
-                      <property name="styleSheet">
-                       <string notr="true">  QPushButton {
-	 background-color: rgba(41, 90, 86, 80);
-	  border-color: rgb(41, 90, 86);
-      border-style:solid;
-      border-width:1px;
-      font:  14px; 
-	  color: rgb(41, 90, 86);
-  }
-  QPushButton:hover:!pressed {
-	 background-color: rgba(167, 206, 151,120);
-	  border-color: rgba(41, 90, 86,164);
-      border-style:solid;
-  }</string>
-                      </property>
-                      <property name="text">
-                       <string/>
-                      </property>
-                      <property name="icon">
-                       <iconset>
-                        <normalon>:/icons/app_icons/all.png</normalon>
-                       </iconset>
-                      </property>
-                      <property name="iconSize">
-                       <size>
-                        <width>24</width>
-                        <height>24</height>
-                       </size>
-                      </property>
-                     </widget>
+                     </spacer>
                     </item>
                     <item>
                      <widget class="QPushButton" name="previous_bin">

@@ -22,5 +22,6 @@
         <file>app_icons/file.png</file>
         <file>app_icons/data-processing.png</file>
         <file>app_icons/run.png</file>
+        <file>app_icons/end_task.png</file>
     </qresource>
 </RCC>

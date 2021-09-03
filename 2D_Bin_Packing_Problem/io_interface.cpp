@@ -26,7 +26,7 @@ QString printOutput(QTextEdit *displayWindow,QString str,QString color)
 
 void show_statistics(BinContainer &bin,int it,int used_bins_nr,QTextEdit *display)
 {
-    QString string="";
+    QString string="<br><br><br>";
     double waste;
     waste=(bin.getFreeArea()/bin.getArea())*100;
     string+="<u>Bin container nr. </u>";
@@ -35,7 +35,7 @@ void show_statistics(BinContainer &bin,int it,int used_bins_nr,QTextEdit *displa
     string+=QString::number(used_bins_nr);
     string+="<br>";
     string+="Waste: ";
-    string+=QString::number(waste);
+    string+=QString::number(waste,'g',2);
     string+="% ";
     string+="<br>";
     string+="Stored objects: ";

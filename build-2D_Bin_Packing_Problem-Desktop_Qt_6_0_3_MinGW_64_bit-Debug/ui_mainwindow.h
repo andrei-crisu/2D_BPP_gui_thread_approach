@@ -101,6 +101,7 @@ public:
     QGroupBox *groupBox_7;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
+    QPushButton *stop;
     QPushButton *clear_stored_data;
     QPushButton *run;
     QSpacerItem *horizontalSpacer_9;
@@ -122,9 +123,8 @@ public:
     QTextEdit *statistics_display;
     QGroupBox *groupBox_6;
     QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton_17;
-    QPushButton *pushButton_16;
-    QPushButton *all_bins;
+    QSpacerItem *horizontalSpacer_13;
+    QSpacerItem *horizontalSpacer_17;
     QPushButton *previous_bin;
     QPushButton *next_bin;
     QSpacerItem *horizontalSpacer_2;
@@ -449,6 +449,12 @@ public:
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
+"      border-style:solid;\n"
 "  }"));
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons/app_icons/play.png"), QSize(), QIcon::Normal, QIcon::On);
@@ -546,6 +552,12 @@ public:
 "  QPushButton:hover:!pressed {\n"
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
 "      border-style:solid;\n"
 "  }"));
         QIcon icon7;
@@ -654,6 +666,12 @@ public:
 "  QPushButton:hover:!pressed {\n"
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
 "      border-style:solid;\n"
 "  }"));
         QIcon icon9;
@@ -777,6 +795,12 @@ public:
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
+"      border-style:solid;\n"
 "  }"));
         clear_3->setIcon(icon10);
         clear_3->setIconSize(QSize(26, 26));
@@ -804,10 +828,43 @@ public:
         horizontalLayout_3 = new QHBoxLayout(groupBox_7);
         horizontalLayout_3->setSpacing(2);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 20, 0);
+        horizontalLayout_3->setContentsMargins(0, 0, 10, 0);
         horizontalSpacer_3 = new QSpacerItem(292, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
+
+        stop = new QPushButton(groupBox_7);
+        stop->setObjectName(QString::fromUtf8("stop"));
+        stop->setEnabled(false);
+        sizePolicy.setHeightForWidth(stop->sizePolicy().hasHeightForWidth());
+        stop->setSizePolicy(sizePolicy);
+        stop->setMinimumSize(QSize(50, 30));
+        stop->setMaximumSize(QSize(50, 30));
+        stop->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+"	 background-color: rgba(41, 90, 86, 80);\n"
+"	  border-color: rgb(41, 90, 86);\n"
+"      border-style:solid;\n"
+"      border-width:1px;\n"
+"      font:  14px; \n"
+"	  color: rgb(41, 90, 86);\n"
+"  }\n"
+"  QPushButton:hover:!pressed {\n"
+"	 background-color: rgba(167, 206, 151,120);\n"
+"	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
+"      border-style:solid;\n"
+"  }"));
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/icons/app_icons/end_task.png"), QSize(), QIcon::Normal, QIcon::On);
+        stop->setIcon(icon11);
+        stop->setIconSize(QSize(26, 26));
+
+        horizontalLayout_3->addWidget(stop);
 
         clear_stored_data = new QPushButton(groupBox_7);
         clear_stored_data->setObjectName(QString::fromUtf8("clear_stored_data"));
@@ -826,6 +883,12 @@ public:
 "  QPushButton:hover:!pressed {\n"
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
+"      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
 "      border-style:solid;\n"
 "  }"));
         clear_stored_data->setIcon(icon6);
@@ -851,10 +914,16 @@ public:
 "	 background-color: rgba(167, 206, 151,120);\n"
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
+"  }\n"
+"\n"
+"QPushButton:disabled {\n"
+"	  background-color: rgba(207, 246, 191,90);\n"
+"	  border-color: rgba(41, 90, 86,90);\n"
+"      border-style:solid;\n"
 "  }"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/icons/app_icons/run.png"), QSize(), QIcon::Normal, QIcon::On);
-        run->setIcon(icon11);
+        QIcon icon12;
+        icon12.addFile(QString::fromUtf8(":/icons/app_icons/run.png"), QSize(), QIcon::Normal, QIcon::On);
+        run->setIcon(icon12);
         run->setIconSize(QSize(26, 26));
 
         horizontalLayout_3->addWidget(run);
@@ -882,9 +951,9 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/icons/app_icons/home.png"), QSize(), QIcon::Normal, QIcon::On);
-        home_2->setIcon(icon12);
+        QIcon icon13;
+        icon13.addFile(QString::fromUtf8(":/icons/app_icons/home.png"), QSize(), QIcon::Normal, QIcon::On);
+        home_2->setIcon(icon13);
         home_2->setIconSize(QSize(28, 28));
 
         horizontalLayout_3->addWidget(home_2);
@@ -1034,77 +1103,13 @@ public:
         horizontalLayout->setSpacing(2);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(2, 0, 2, 0);
-        pushButton_17 = new QPushButton(groupBox_6);
-        pushButton_17->setObjectName(QString::fromUtf8("pushButton_17"));
-        sizePolicy.setHeightForWidth(pushButton_17->sizePolicy().hasHeightForWidth());
-        pushButton_17->setSizePolicy(sizePolicy);
-        pushButton_17->setMinimumSize(QSize(50, 30));
-        pushButton_17->setMaximumSize(QSize(50, 30));
-        pushButton_17->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
-"	 background-color: rgba(41, 90, 86, 80);\n"
-"	  border-color: rgb(41, 90, 86);\n"
-"      border-style:solid;\n"
-"      border-width:1px;\n"
-"      font:  14px; \n"
-"	  color: rgb(41, 90, 86);\n"
-"  }\n"
-"  QPushButton:hover:!pressed {\n"
-"	 background-color: rgba(167, 206, 151,120);\n"
-"	  border-color: rgba(41, 90, 86,164);\n"
-"      border-style:solid;\n"
-"  }"));
-        pushButton_17->setIconSize(QSize(28, 28));
+        horizontalSpacer_13 = new QSpacerItem(200, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout->addWidget(pushButton_17);
+        horizontalLayout->addItem(horizontalSpacer_13);
 
-        pushButton_16 = new QPushButton(groupBox_6);
-        pushButton_16->setObjectName(QString::fromUtf8("pushButton_16"));
-        sizePolicy.setHeightForWidth(pushButton_16->sizePolicy().hasHeightForWidth());
-        pushButton_16->setSizePolicy(sizePolicy);
-        pushButton_16->setMinimumSize(QSize(50, 30));
-        pushButton_16->setMaximumSize(QSize(50, 30));
-        pushButton_16->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
-"	 background-color: rgba(41, 90, 86, 80);\n"
-"	  border-color: rgb(41, 90, 86);\n"
-"      border-style:solid;\n"
-"      border-width:1px;\n"
-"      font:  14px; \n"
-"	  color: rgb(41, 90, 86);\n"
-"  }\n"
-"  QPushButton:hover:!pressed {\n"
-"	 background-color: rgba(167, 206, 151,120);\n"
-"	  border-color: rgba(41, 90, 86,164);\n"
-"      border-style:solid;\n"
-"  }"));
-        pushButton_16->setIconSize(QSize(28, 28));
+        horizontalSpacer_17 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addWidget(pushButton_16);
-
-        all_bins = new QPushButton(groupBox_6);
-        all_bins->setObjectName(QString::fromUtf8("all_bins"));
-        sizePolicy.setHeightForWidth(all_bins->sizePolicy().hasHeightForWidth());
-        all_bins->setSizePolicy(sizePolicy);
-        all_bins->setMinimumSize(QSize(50, 30));
-        all_bins->setMaximumSize(QSize(50, 30));
-        all_bins->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
-"	 background-color: rgba(41, 90, 86, 80);\n"
-"	  border-color: rgb(41, 90, 86);\n"
-"      border-style:solid;\n"
-"      border-width:1px;\n"
-"      font:  14px; \n"
-"	  color: rgb(41, 90, 86);\n"
-"  }\n"
-"  QPushButton:hover:!pressed {\n"
-"	 background-color: rgba(167, 206, 151,120);\n"
-"	  border-color: rgba(41, 90, 86,164);\n"
-"      border-style:solid;\n"
-"  }"));
-        QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/icons/app_icons/all.png"), QSize(), QIcon::Normal, QIcon::On);
-        all_bins->setIcon(icon13);
-        all_bins->setIconSize(QSize(24, 24));
-
-        horizontalLayout->addWidget(all_bins);
+        horizontalLayout->addItem(horizontalSpacer_17);
 
         previous_bin = new QPushButton(groupBox_6);
         previous_bin->setObjectName(QString::fromUtf8("previous_bin"));
@@ -1181,7 +1186,7 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        home->setIcon(icon12);
+        home->setIcon(icon13);
         home->setIconSize(QSize(28, 28));
 
         horizontalLayout->addWidget(home);
@@ -1573,7 +1578,7 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        home_4->setIcon(icon12);
+        home_4->setIcon(icon13);
         home_4->setIconSize(QSize(28, 28));
 
         horizontalLayout_12->addWidget(home_4);
@@ -1687,7 +1692,7 @@ public:
 "	  border-color: rgba(41, 90, 86,164);\n"
 "      border-style:solid;\n"
 "  }"));
-        home_5->setIcon(icon12);
+        home_5->setIcon(icon13);
         home_5->setIconSize(QSize(28, 28));
 
         horizontalLayout_15->addWidget(home_5);
@@ -1761,7 +1766,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1828,6 +1833,10 @@ public:
         clear_3->setText(QString());
         groupBox_7->setTitle(QString());
 #if QT_CONFIG(tooltip)
+        stop->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">forcibly finish the packing task</span></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+        stop->setText(QString());
+#if QT_CONFIG(tooltip)
         clear_stored_data->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         clear_stored_data->setText(QString());
@@ -1851,12 +1860,6 @@ public:
         groupBox_5->setTitle(QString());
         groupBox_18->setTitle(QString());
         groupBox_6->setTitle(QString());
-        pushButton_17->setText(QString());
-        pushButton_16->setText(QString());
-#if QT_CONFIG(tooltip)
-        all_bins->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">show all bins</span></p></body></html>", nullptr));
-#endif // QT_CONFIG(tooltip)
-        all_bins->setText(QString());
 #if QT_CONFIG(tooltip)
         previous_bin->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">show previous bin</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)

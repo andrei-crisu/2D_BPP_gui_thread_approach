@@ -1,16 +1,22 @@
 #include"packing_algorithm.h"
 
-QVector<BinContainer> packing(QVector<MyObject> obj,double bin_width,double bin_height,double step)
+QVector<BinContainer> packing(QPushButton *btn,QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step)
 {
     QVector<BinContainer> used_bins;
     MyObject current_obj;
     BinContainer current_bin;
+    MyTimer timer(display,0,obj.length());
     if(obj.isEmpty())
         throw Exception("Warning: nothing to pack!");
     current_bin=BinContainer(bin_width,bin_height);
     used_bins.append(current_bin);
     for(int i=0;i<obj.length();i++)
     {
+        double val=obj.length();
+        val=((double)i/val)*100.0;
+        timer.setVal(display,val);
+        //process some invents
+        QCoreApplication::processEvents();
         current_obj=obj.at(i);
         //check if the rectangle does fit in an empty bin!
         if(has_larger_dimensions(current_obj,bin_width,bin_height))
@@ -114,6 +120,9 @@ bool try_to_place(BinContainer&bin,MyObject &obj,double step)
     for(double i=0;i<=bin.getWidth()-obj.getWidth();i=i+step)
         for(double j=0;j<=bin.getHeight()-obj.getHeight();j=j+step)
         {
+            //process some invents
+            QCoreApplication::processEvents();
+            //
             obj.setX(i);
             obj.setY(j);
             if(overlap_check(bin,obj)==false&&fit_inside(bin,obj)==true)

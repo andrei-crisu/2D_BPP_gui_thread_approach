@@ -2,7 +2,11 @@
 #define PACKING_ALGORITHM_H
 #include"bincontainer.h"
 #include"myobject.h"
-QVector<BinContainer> packing(QVector<MyObject> obj,double bin_width,double bin_height,double step=1);
+#include<QCoreApplication>
+#include"mytimer.h"
+#include<QPushButton>
+
+QVector<BinContainer> packing(QPushButton *btn,QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step);
 
 bool has_larger_dimensions(MyObject object,double width,double height);
 

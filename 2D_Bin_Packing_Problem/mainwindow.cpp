@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     container_height=0;
     container_width=0;
     draw_bin_iterator=0;
-    placing_step=1;
+    placing_step=5;
 
 }
 
@@ -127,45 +127,39 @@ void MainWindow::on_refresh_clicked()
 {
     try
     {
-        if(all_objects.isEmpty())
+        if(all_bins.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
         ui->stackedWidget->setCurrentIndex(2);
-        //sorting objects vector descending by area
-        quickSort(all_objects,0,all_objects.length()-1);
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
         ui->graphicsView->items().clear();
         //than draw
         QBrush brush(QColor(14,30,55,40));
+        QBrush transparent_brush(QColor(14,30,55,0));
         QPen outlinePen(QColor(128,0,0,120));
+        QPen binOutlinePen(QColor(0,128,0,120));
         outlinePen.setWidth(1);
-        //QGraphicsRectItem *rect=scene->addRect(0,0,1000,1000,outlinePen);
+        binOutlinePen.setWidthF(1.4);
+        //
         MyObject obj;
-        double max_w,max_h,all_w,all_h;
-        max_w=max_h=0;
-        all_h=all_w=20;
-        for(int i=0;i<all_objects.length();i++)
+        BinContainer current_bin=all_bins.at(draw_bin_iterator);
+        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
+        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
+        if(current_bin.getObjNumber()==0)
+            throw Exception("Error:bin is Empty!Nothing to draw!");
+        for(int i=0;i<current_bin.getObjNumber();i++)
         {
-            obj=all_objects.at(i);
-            if(obj.getWidth()>max_w)
-                max_w=obj.getWidth();
-            if(obj.getHeight()>max_h)
-                max_h=obj.getHeight();
-            scene->addRect(20,all_h, obj.getWidth(),obj.getHeight(), outlinePen,brush);
-            all_h+=obj.getHeight();
-            all_h+=2;
-            all_w+=obj.getWidth();
+            obj=current_bin.getObjAt(i);
+            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
         }
         //after
         //zoom to fit
-        ui->graphicsView->fitInView(0,0,max_w+40,all_h,Qt::AspectRatioMode::KeepAspectRatio);
+        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
     }catch(Exception &e)
     {
         printStatus(ui->status_window,e.what(),DARK_RED);
     }
-
-
 }
 
 void MainWindow::on_zoom_out_clicked()
@@ -189,14 +183,10 @@ void MainWindow::on_zoom_to_fit_clicked()
 void MainWindow::on_clear_screen_clicked()
 {
     //clear
+    ui->statistics_display->clear();
     scene->clear();
     ui->graphicsView->viewport()->update();
     ui->graphicsView->items().clear();
-}
-
-void MainWindow::on_all_bins_clicked()
-{
-
 }
 
 void MainWindow::on_previous_bin_clicked()
@@ -346,8 +336,18 @@ void MainWindow::on_run_clicked()
         //clean entire bin list (prepare for a new packing)
         all_bins.clear();
         //pack rectangles
-        all_bins=packing(all_objects,container_width,container_height,placing_step);
-        printStatus(ui->status_window,"Status: packing completed",DARK_BLUE);
+        printStatus(ui->status_window,"Status: packing::started",DARK_BLUE);
+        ui->run->setEnabled(false);
+        ui->clear_stored_data->setEnabled(false);
+        ui->stop->setEnabled(true);
+        ui->process->setEnabled(false);
+        ui->add->setEnabled(false);
+        ui->set_container->setEnabled(false);
+
+        //packing task
+        all_bins=packing(ui->stop,ui->status_window,all_objects,container_width,container_height,placing_step);
+
+        printStatus(ui->status_window,"Status: packing::completed",DARK_BLUE);
         if(all_bins.isEmpty())
             throw Exception ("Empty: No any rectangle to display!");
         ui->stackedWidget->setCurrentIndex(2);
@@ -367,13 +367,13 @@ void MainWindow::on_run_clicked()
         draw_bin_iterator=0;
         BinContainer current_bin=all_bins.at(draw_bin_iterator);
         show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
-        scene->addRect(container_width/10,container_height/10,container_width,container_height, binOutlinePen,transparent_brush);
+        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
         if(current_bin.getObjNumber()<1)
             throw Exception("Error:bin is Empty!Nothing to draw!");
         for(int i=0;i<current_bin.getObjNumber();i++)
         {
             obj=current_bin.getObjAt(i);
-            scene->addRect(container_width/10+obj.getX(),container_height/10+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
+            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
         }
         //after
         //zoom to fit
@@ -382,6 +382,13 @@ void MainWindow::on_run_clicked()
     {
         printStatus(ui->status_window,e.what(),DARK_RED);
     }
+    //activate input processing buttons
+    ui->run->setEnabled(true);
+    ui->clear_stored_data->setEnabled(true);
+    ui->stop->setEnabled(false);
+    ui->process->setEnabled(true);
+    ui->add->setEnabled(true);
+    ui->set_container->setEnabled(true);
 
 
 }
@@ -516,4 +523,15 @@ void MainWindow::on_to_packing_2_clicked()
 void MainWindow::on_settings_3_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_stop_clicked()
+{
+    ui->run->setEnabled(true);
+    ui->clear_stored_data->setEnabled(true);
+    ui->stop->setEnabled(false);
+    ui->process->setEnabled(true);
+    ui->add->setEnabled(true);
+    ui->set_container->setEnabled(true);
+    throw Exception("The packing procedure has been forcibly terminated!");
 }

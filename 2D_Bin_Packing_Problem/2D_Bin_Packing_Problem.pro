@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     myobject.cpp \
+    mytimer.cpp \
     packing_algorithm.cpp \
     sorting_algorithm.cpp
 
@@ -27,6 +28,7 @@ HEADERS += \
     mainwindow.h \
     my_constants.h \
     myobject.h \
+    mytimer.h \
     packing_algorithm.h \
     sorting_algorithm.h
 
@@ -49,6 +51,7 @@ DISTFILES += \
     app_icons/clear.png \
     app_icons/data-processing.png \
     app_icons/delete.png \
+    app_icons/end_task.png \
     app_icons/exit.png \
     app_icons/exit_32.png \
     app_icons/file.png \

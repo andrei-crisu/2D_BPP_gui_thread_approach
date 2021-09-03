@@ -56,8 +56,6 @@ private slots:
 
     void on_clear_screen_clicked();
 
-    void on_all_bins_clicked();
-
     void on_previous_bin_clicked();
 
     void on_next_bin_clicked();
@@ -99,6 +97,8 @@ private slots:
     void on_to_packing_2_clicked();
 
     void on_settings_3_clicked();
+
+    void on_stop_clicked();
 
 private:
     Ui::MainWindow *ui;
