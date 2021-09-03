@@ -100,6 +100,8 @@ private slots:
 
     void on_stop_clicked();
 
+    void on_transparency_slider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 

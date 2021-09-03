@@ -535,3 +535,10 @@ void MainWindow::on_stop_clicked()
     ui->set_container->setEnabled(true);
     throw Exception("The packing procedure has been forcibly terminated!");
 }
+
+void MainWindow::on_transparency_slider_valueChanged(int value)
+{
+    double transparency=100;
+    transparency=value/100.0;
+    this->setWindowOpacity(transparency);
+}
