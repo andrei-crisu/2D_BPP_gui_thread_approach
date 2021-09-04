@@ -133,7 +133,6 @@ void MainWindow::on_refresh_clicked()
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
-        ui->graphicsView->items().clear();
         //than draw
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
@@ -186,7 +185,6 @@ void MainWindow::on_clear_screen_clicked()
     ui->statistics_display->clear();
     scene->clear();
     ui->graphicsView->viewport()->update();
-    ui->graphicsView->items().clear();
 }
 
 void MainWindow::on_previous_bin_clicked()
@@ -199,7 +197,6 @@ void MainWindow::on_previous_bin_clicked()
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
-        ui->graphicsView->items().clear();
         //than draw
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
@@ -243,7 +240,6 @@ void MainWindow::on_next_bin_clicked()
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
-        ui->graphicsView->items().clear();
         //than draw
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));
@@ -345,7 +341,7 @@ void MainWindow::on_run_clicked()
         ui->set_container->setEnabled(false);
 
         //packing task
-        all_bins=packing(ui->stop,ui->status_window,all_objects,container_width,container_height,placing_step);
+        all_bins=packing(ui->status_window,all_objects,container_width,container_height,placing_step);
 
         printStatus(ui->status_window,"Status: packing::completed",DARK_BLUE);
         if(all_bins.isEmpty())
@@ -354,7 +350,6 @@ void MainWindow::on_run_clicked()
         //clear first
         scene->clear();
         ui->graphicsView->viewport()->update();
-        ui->graphicsView->items().clear();
         //than draw
         QBrush brush(QColor(14,30,55,40));
         QBrush transparent_brush(QColor(14,30,55,0));

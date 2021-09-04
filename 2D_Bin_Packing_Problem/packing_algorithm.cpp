@@ -1,6 +1,6 @@
 #include"packing_algorithm.h"
 
-QVector<BinContainer> packing(QPushButton *btn,QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step)
+QVector<BinContainer> packing(QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step)
 {
     QVector<BinContainer> used_bins;
     MyObject current_obj;

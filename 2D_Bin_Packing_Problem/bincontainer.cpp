@@ -69,6 +69,7 @@ MyObject BinContainer::appendObj(MyObject &other)
     objNumber++;
     bin.append(other);
     usedArea=usedArea+other.getArea();
+    return other;
 }
 
 double BinContainer::area()

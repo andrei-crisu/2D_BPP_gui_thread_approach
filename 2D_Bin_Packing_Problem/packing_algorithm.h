@@ -6,7 +6,7 @@
 #include"mytimer.h"
 #include<QPushButton>
 
-QVector<BinContainer> packing(QPushButton *btn,QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step);
+QVector<BinContainer> packing(QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step);
 
 bool has_larger_dimensions(MyObject object,double width,double height);
 
