@@ -341,7 +341,8 @@ void MainWindow::on_run_clicked()
         ui->set_container->setEnabled(false);
 
         //packing task
-        all_bins=packing(ui->status_window,all_objects,container_width,container_height,placing_step);
+        //all_bins=packing(ui->status_window,all_objects,container_width,container_height,placing_step);
+        Controller controller(ui->status_window,all_objects,container_width,container_height,placing_step);
 
         printStatus(ui->status_window,"Status: packing::completed",DARK_BLUE);
         if(all_bins.isEmpty())

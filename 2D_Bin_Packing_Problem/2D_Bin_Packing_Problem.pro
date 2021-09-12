@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     bincontainer.cpp \
+    controller.cpp \
     dataparser.cpp \
     exception.cpp \
     io_interface.cpp \
@@ -18,10 +19,12 @@ SOURCES += \
     myobject.cpp \
     mytimer.cpp \
     packing_algorithm.cpp \
-    sorting_algorithm.cpp
+    sorting_algorithm.cpp \
+    worker.cpp
 
 HEADERS += \
     bincontainer.h \
+    controller.h \
     dataparser.h \
     exception.h \
     io_interface.h \
@@ -30,7 +33,8 @@ HEADERS += \
     myobject.h \
     mytimer.h \
     packing_algorithm.h \
-    sorting_algorithm.h
+    sorting_algorithm.h \
+    worker.h
 
 FORMS += \
     mainwindow.ui

@@ -15,6 +15,7 @@
 #include "bincontainer.h"
 #include"sorting_algorithm.h"
 #include"packing_algorithm.h"
+#include "controller.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
