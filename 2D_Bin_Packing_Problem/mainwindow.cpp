@@ -327,6 +327,12 @@ void MainWindow::on_run_clicked()
 {
     try
     {
+        //check if there is any object stored
+        if(all_objects.isEmpty())
+        {
+            throw Exception("Empty: No any object provided! ");
+        }
+
         //sorting objects vector descending by area
         quickSort(all_objects,0,all_objects.length()-1);
         //clean entire bin list (prepare for a new packing)
@@ -342,7 +348,9 @@ void MainWindow::on_run_clicked()
 
         //packing task
         //all_bins=packing(ui->status_window,all_objects,container_width,container_height,placing_step);
-        Controller controller(ui->status_window,all_objects,container_width,container_height,placing_step);
+        Controller *controller=new Controller(ui->status_window,all_objects,container_width,container_height,placing_step);
+        all_bins=controller->all_containers;
+        delete controller;
 
         printStatus(ui->status_window,"Status: packing::completed",DARK_BLUE);
         if(all_bins.isEmpty())

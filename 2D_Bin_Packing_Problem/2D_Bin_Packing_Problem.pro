@@ -17,7 +17,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     myobject.cpp \
-    mytimer.cpp \
     packing_algorithm.cpp \
     sorting_algorithm.cpp \
     worker.cpp
@@ -31,7 +30,6 @@ HEADERS += \
     mainwindow.h \
     my_constants.h \
     myobject.h \
-    mytimer.h \
     packing_algorithm.h \
     sorting_algorithm.h \
     worker.h

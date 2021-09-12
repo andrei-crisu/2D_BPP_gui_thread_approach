@@ -5,16 +5,14 @@ QVector<BinContainer> packing(QTextEdit *display,QVector<MyObject> obj,double bi
     QVector<BinContainer> used_bins;
     MyObject current_obj;
     BinContainer current_bin;
-    MyTimer timer(display,0,obj.length());
     if(obj.isEmpty())
         throw Exception("Warning: nothing to pack!");
     current_bin=BinContainer(bin_width,bin_height);
     used_bins.append(current_bin);
     for(int i=0;i<obj.length();i++)
     {
-        double val=obj.length();
-        val=((double)i/val)*100.0;
-        timer.setVal(display,val);
+        //double val=obj.length();
+        //val=((double)i/val)*100.0;
         //process some invents
         QCoreApplication::processEvents();
         current_obj=obj.at(i);
@@ -85,7 +83,6 @@ QVector<BinContainer> packing(QTextEdit *display,QVector<MyObject> obj,double bi
 
         }
     }
-
     return used_bins;
 }
 

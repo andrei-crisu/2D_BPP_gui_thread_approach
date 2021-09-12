@@ -3,8 +3,8 @@
 #include"bincontainer.h"
 #include"myobject.h"
 #include<QCoreApplication>
-#include"mytimer.h"
 #include<QPushButton>
+#include<QTextEdit>
 
 QVector<BinContainer> packing(QTextEdit *display,QVector<MyObject> obj,double bin_width,double bin_height,double step);
 
