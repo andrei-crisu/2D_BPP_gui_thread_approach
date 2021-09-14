@@ -1,15 +1,12 @@
 debug/bincontainer.o
-debug/controller.o
 debug/dataparser.o
 debug/exception.o
 debug/io_interface.o
 debug/main.o
 debug/mainwindow.o
 debug/myobject.o
-debug/packing_algorithm.o
 debug/sorting_algorithm.o
 debug/worker.o
 debug/qrc_app_resources.o
-debug/moc_controller.o
 debug/moc_mainwindow.o
 debug/moc_worker.o

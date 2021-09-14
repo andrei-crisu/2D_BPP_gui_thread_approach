@@ -1,35 +1,51 @@
 #ifndef WORKER_H
 #define WORKER_H
 
-#include<QtCore>
-#include<QTextEdit>
+#include <QObject>
 #include"myobject.h"
-#include"packing_algorithm.h"
-#include "my_constants.h"
-#include "io_interface.h"
+#include"bincontainer.h"
+#include<QTimer>
 
-class Worker : public QObject
-{
+class Worker : public QObject {
     Q_OBJECT
+public:
+    Worker(QVector<MyObject> &obj,double &bin_width,double &bin_height,double &step);
+    ~Worker();
+
+    QVector<BinContainer> packing(QVector<MyObject> obj,double bin_width,double bin_height,double step);
+
+    bool has_larger_dimensions(MyObject object,double width,double height);
+
+    void place(BinContainer &bin,MyObject &obj,double x,double y);
+
+    bool try_to_place(BinContainer&bin,MyObject &obj,double step);
+
+    bool overlap(MyObject current_rectangle,MyObject stored_rectangle);
+
+    bool overlap_check(BinContainer &bin,MyObject &obj);
+
+    bool fit_inside(BinContainer &bin,MyObject &obj);
 
 public slots:
-    void doWork(QTextEdit *infoWindow,QVector<MyObject> all_objects,
-                double bin_width,double bin_height,double placing_step) {
-        QVector<BinContainer> result;
-        /* ... here is the expensive or blocking operation ... */
-        try {
-
-        result=packing(infoWindow,all_objects,bin_width,bin_height,placing_step);
-        emit resultReady(result);
-        }catch(Exception &e)
-        {
-            printStatus(infoWindow,e.what(),DARK_RED);
-        }
-    }
-
+    void packResponse();
+    void messageSlot(const QString &message);
+    void statusSlot();
 signals:
-    void resultReady(const QVector<BinContainer> &result);
-};
+    void valChanged(QString &str);
+    void haveResult(QVector<BinContainer> &result);
+    void taskEnded();
+    void statusMessage(const QString &message);
+private:
+    // add your variables here
+    QVector<MyObject> rectangles;
+    double container_windth;
+    double container_height;
+    double packing_step;
+public:
+    QVector<BinContainer> container;
+    int status;
+    QTimer *timer;
 
+};
 
 #endif // WORKER_H

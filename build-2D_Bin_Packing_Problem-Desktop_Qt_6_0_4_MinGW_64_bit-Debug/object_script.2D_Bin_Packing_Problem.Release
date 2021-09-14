@@ -1,15 +1,12 @@
 release/bincontainer.o
-release/controller.o
 release/dataparser.o
 release/exception.o
 release/io_interface.o
 release/main.o
 release/mainwindow.o
 release/myobject.o
-release/packing_algorithm.o
 release/sorting_algorithm.o
 release/worker.o
 release/qrc_app_resources.o
-release/moc_controller.o
 release/moc_mainwindow.o
 release/moc_worker.o

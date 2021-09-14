@@ -101,7 +101,7 @@ public:
     QGroupBox *groupBox_7;
     QHBoxLayout *horizontalLayout_3;
     QSpacerItem *horizontalSpacer_3;
-    QPushButton *stop;
+    QPushButton *display_bins;
     QPushButton *clear_stored_data;
     QPushButton *run;
     QSpacerItem *horizontalSpacer_9;
@@ -542,6 +542,7 @@ public:
         verticalLayout_8->addWidget(masive_load_input);
 
         horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(2);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -840,19 +841,18 @@ public:
         horizontalLayout_3 = new QHBoxLayout(groupBox_7);
         horizontalLayout_3->setSpacing(2);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 10, 0);
+        horizontalLayout_3->setContentsMargins(10, 0, 20, 0);
         horizontalSpacer_3 = new QSpacerItem(292, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_3->addItem(horizontalSpacer_3);
 
-        stop = new QPushButton(groupBox_7);
-        stop->setObjectName(QString::fromUtf8("stop"));
-        stop->setEnabled(false);
-        sizePolicy.setHeightForWidth(stop->sizePolicy().hasHeightForWidth());
-        stop->setSizePolicy(sizePolicy);
-        stop->setMinimumSize(QSize(50, 30));
-        stop->setMaximumSize(QSize(50, 30));
-        stop->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
+        display_bins = new QPushButton(groupBox_7);
+        display_bins->setObjectName(QString::fromUtf8("display_bins"));
+        sizePolicy.setHeightForWidth(display_bins->sizePolicy().hasHeightForWidth());
+        display_bins->setSizePolicy(sizePolicy);
+        display_bins->setMinimumSize(QSize(50, 30));
+        display_bins->setMaximumSize(QSize(50, 30));
+        display_bins->setStyleSheet(QString::fromUtf8("  QPushButton {\n"
 "	 background-color: rgba(41, 90, 86, 80);\n"
 "	  border-color: rgb(41, 90, 86);\n"
 "      border-style:solid;\n"
@@ -872,11 +872,11 @@ public:
 "      border-style:solid;\n"
 "  }"));
         QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/icons/app_icons/end_task.png"), QSize(), QIcon::Normal, QIcon::On);
-        stop->setIcon(icon11);
-        stop->setIconSize(QSize(26, 26));
+        icon11.addFile(QString::fromUtf8(":/icons/app_icons/tabs.png"), QSize(), QIcon::Normal, QIcon::On);
+        display_bins->setIcon(icon11);
+        display_bins->setIconSize(QSize(26, 26));
 
-        horizontalLayout_3->addWidget(stop);
+        horizontalLayout_3->addWidget(display_bins);
 
         clear_stored_data = new QPushButton(groupBox_7);
         clear_stored_data->setObjectName(QString::fromUtf8("clear_stored_data"));
@@ -1881,7 +1881,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 700, 21));
+        menubar->setGeometry(QRect(0, 0, 700, 20));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -1920,7 +1920,9 @@ public:
         groupBox_12->setTitle(QCoreApplication::translate("MainWindow", "Edit Bin", nullptr));
         groupBox_14->setTitle(QString());
         label->setText(QCoreApplication::translate("MainWindow", "Width:", nullptr));
+        bin_width_input->setText(QCoreApplication::translate("MainWindow", "800", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Height:", nullptr));
+        bin_height_input->setText(QCoreApplication::translate("MainWindow", "700", nullptr));
 #if QT_CONFIG(tooltip)
         set_container->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>save bin size</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1930,6 +1932,47 @@ public:
 #endif // QT_CONFIG(tooltip)
         clear_2->setText(QString());
         groupBox_13->setTitle(QCoreApplication::translate("MainWindow", "Add Rectangles", nullptr));
+        masive_load_input->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">100,100;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">45,23;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">123,44;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">440,20;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">12,34;</p>\n"
+""
+                        "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">30,480;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">100,100;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">45,23;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">123,44;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">440,20;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">12,34;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">24,480;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; mar"
+                        "gin-right:0px; -qt-block-indent:0; text-indent:0px;\">100,480;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">49,34;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">199,342;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">128,566;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">69,85;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">345,451;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">196,437;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">10,490;</"
+                        "p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">495,23;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">10,12;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">10,45;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">10,100;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">4,4;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">6,4;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">5,6;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin"
+                        "-right:0px; -qt-block-indent:0; text-indent:0px;\">12,34;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">41,90;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">200,250;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">401,389;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">22,345;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">211,123;</p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         process->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">process data loaded from file</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1956,9 +1999,9 @@ public:
         clear_3->setText(QString());
         groupBox_7->setTitle(QString());
 #if QT_CONFIG(tooltip)
-        stop->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">forcibly finish the packing task</span></p></body></html>", nullptr));
+        display_bins->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">display bins</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
-        stop->setText(QString());
+        display_bins->setText(QString());
 #if QT_CONFIG(tooltip)
         clear_stored_data->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">clear</span></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)

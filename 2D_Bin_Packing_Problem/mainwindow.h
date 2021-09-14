@@ -14,8 +14,9 @@
 #include"myobject.h"
 #include "bincontainer.h"
 #include"sorting_algorithm.h"
-#include"packing_algorithm.h"
-#include "controller.h"
+#include<QThread>
+#include<QtCore>
+#include"worker.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +30,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event);
+    void sendInforMessage(const QString &message);
 
 private slots:
     void on_exit_button_clicked();
@@ -99,9 +101,18 @@ private slots:
 
     void on_settings_3_clicked();
 
-    void on_stop_clicked();
-
     void on_transparency_slider_valueChanged(int value);
+
+    void handleResult(QVector<BinContainer> &bins);
+
+    void showMessage(const QString &message);
+
+    void on_display_bins_clicked();
+
+signals:
+    void askToPack();
+    void endPackingTask();
+    void infoMessage(const QString &message);
 
 private:
     Ui::MainWindow *ui;

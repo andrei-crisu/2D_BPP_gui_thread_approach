@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     container_width=0;
     draw_bin_iterator=0;
     placing_step=5;
-
+    connect(this,&MainWindow::infoMessage,this,&MainWindow::showMessage);
 }
 
 MainWindow::~MainWindow()
@@ -33,31 +33,31 @@ void MainWindow::closeEvent(QCloseEvent *event)
     pButtonNo->setMinimumSize(100,24);
     pButtonNo->setStyleSheet(
                 "  QPushButton {"
-"background-color: rgba(41, 90, 86, 80);"
-"border-color: rgb(41, 90, 86);"
-"border-style:solid;"
-"border-width:1px;"
-"font:  20px; "
-"color: rgb(41, 90, 86);}"
-"QPushButton:hover:!pressed {"
-"background-color: rgba(167, 206, 151,120);"
-"border-color: rgba(41, 90, 86,164);"
-"border-style:solid;}");
+                "background-color: rgba(41, 90, 86, 80);"
+                "border-color: rgb(41, 90, 86);"
+                "border-style:solid;"
+                "border-width:1px;"
+                "font:  20px; "
+                "color: rgb(41, 90, 86);}"
+                "QPushButton:hover:!pressed {"
+                "background-color: rgba(167, 206, 151,120);"
+                "border-color: rgba(41, 90, 86,164);"
+                "border-style:solid;}");
 
     //Yes button
     pButtonYes->setMinimumSize(100,24);
     pButtonYes->setStyleSheet(
                 "  QPushButton {"
-"background-color: rgba(41, 90, 86, 80);"
-"border-color: rgb(41, 90, 86);"
-"border-style:solid;"
-"border-width:1px;"
-"font:  20px; "
-"color: #a6000d;}"
-"QPushButton:hover:!pressed {"
-"background-color: #bbcfd7;"
-"border-color: #a6000d;"
-"border-style:solid;}");
+                "background-color: rgba(41, 90, 86, 80);"
+                "border-color: rgb(41, 90, 86);"
+                "border-style:solid;"
+                "border-width:1px;"
+                "font:  20px; "
+                "color: #a6000d;}"
+                "QPushButton:hover:!pressed {"
+                "background-color: #bbcfd7;"
+                "border-color: #a6000d;"
+                "border-style:solid;}");
 
 
     //msgBox
@@ -80,6 +80,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         event->accept();
     }
+}
+
+void MainWindow::sendInforMessage(const QString &message)
+{
+    emit infoMessage(message);
 }
 
 void MainWindow::on_exit_button_clicked()
@@ -333,67 +338,45 @@ void MainWindow::on_run_clicked()
             throw Exception("Empty: No any object provided! ");
         }
 
-        //sorting objects vector descending by area
-        quickSort(all_objects,0,all_objects.length()-1);
+        if(container_width<=0)
+            throw Exception("Error:Bin width is not a valid one; bin width="+QString::number(container_width));
+        if(container_height<=0)
+            throw Exception("Error:Bin height is not a valid one; bin height="+QString::number(container_height));
+
         //clean entire bin list (prepare for a new packing)
         all_bins.clear();
         //pack rectangles
-        printStatus(ui->status_window,"Status: packing::started",DARK_BLUE);
         ui->run->setEnabled(false);
         ui->clear_stored_data->setEnabled(false);
-        ui->stop->setEnabled(true);
         ui->process->setEnabled(false);
         ui->add->setEnabled(false);
         ui->set_container->setEnabled(false);
 
-        //packing task
-        //all_bins=packing(ui->status_window,all_objects,container_width,container_height,placing_step);
-        Controller *controller=new Controller(ui->status_window,all_objects,container_width,container_height,placing_step);
-        all_bins=controller->all_containers;
-        delete controller;
+        QThread* thread = new QThread();
+        Worker* worker = new Worker(all_objects,container_width,container_height,placing_step);
+        worker->moveToThread(thread);
 
-        printStatus(ui->status_window,"Status: packing::completed",DARK_BLUE);
-        if(all_bins.isEmpty())
-            throw Exception ("Empty: No any rectangle to display!");
-        ui->stackedWidget->setCurrentIndex(2);
-        //clear first
-        scene->clear();
-        ui->graphicsView->viewport()->update();
-        //than draw
-        QBrush brush(QColor(14,30,55,40));
-        QBrush transparent_brush(QColor(14,30,55,0));
-        QPen outlinePen(QColor(128,0,0,120));
-        QPen binOutlinePen(QColor(0,128,0,120));
-        outlinePen.setWidth(1);
-        binOutlinePen.setWidthF(1.4);
-        //
-        MyObject obj;
-        draw_bin_iterator=0;
-        BinContainer current_bin=all_bins.at(draw_bin_iterator);
-        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
-        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
-        if(current_bin.getObjNumber()<1)
-            throw Exception("Error:bin is Empty!Nothing to draw!");
-        for(int i=0;i<current_bin.getObjNumber();i++)
-        {
-            obj=current_bin.getObjAt(i);
-            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
-        }
-        //after
-        //zoom to fit
-        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
-    }catch(Exception &e)
-    {
+        connect( thread, &QThread::started, worker,&Worker::packResponse);
+        connect(worker,&Worker::haveResult,this,&MainWindow::handleResult);
+        connect( worker, &Worker::haveResult, thread, &QThread::quit);
+        connect( worker, &Worker::haveResult, worker, &Worker::deleteLater);
+        connect( thread, &QThread::finished, thread, &QThread::deleteLater);
+
+        connect(worker,&Worker::statusMessage,this,&MainWindow::showMessage);
+
+        thread->start();
+
+        thread->quit();
+
+    }  catch (Exception &e){
         printStatus(ui->status_window,e.what(),DARK_RED);
+        ui->clear_stored_data->setEnabled(true);
+        //activate input processing buttons
+        ui->run->setEnabled(true);
+        ui->process->setEnabled(true);
+        ui->add->setEnabled(true);
+        ui->set_container->setEnabled(true);
     }
-    //activate input processing buttons
-    ui->run->setEnabled(true);
-    ui->clear_stored_data->setEnabled(true);
-    ui->stop->setEnabled(false);
-    ui->process->setEnabled(true);
-    ui->add->setEnabled(true);
-    ui->set_container->setEnabled(true);
-
 
 }
 
@@ -439,10 +422,10 @@ void MainWindow::on_add_clicked()
 
         if(w<0||h<0)
             throw Exception("Rectangle can't have any negative dimension(width/height)"
-": [ ("+w_string+","+h_string+") ]");
+                            ": [ ("+w_string+","+h_string+") ]");
         all_objects.append(MyObject(w,h));
         printStatus(ui->status_window,"Rectangle added: "
-"["+QString::number(w)+","+QString::number(h)+"];",DARK_BLUE);
+                                      "["+QString::number(w)+","+QString::number(h)+"];",DARK_BLUE);
 
     }catch (Exception &e) {
         printStatus(ui->status_window,e.what(),DARK_RED);
@@ -474,11 +457,11 @@ void MainWindow::on_set_container_clicked()
 
         if(w<0||h<0)
             throw Exception("a bin can't have any negative dimension(width/height)"
-": [ ("+w_string+","+h_string+") ]");
+                            ": [ ("+w_string+","+h_string+") ]");
         container_width=w;
         container_height=h;
         printStatus(ui->status_window,"Bin size updated: "
-"["+QString::number(w)+","+QString::number(h)+"];",DARK_BLUE);
+                                      "["+QString::number(w)+","+QString::number(h)+"];",DARK_BLUE);
 
     }catch (Exception &e) {
         printStatus(ui->status_window,e.what(),DARK_RED);
@@ -529,16 +512,6 @@ void MainWindow::on_settings_3_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 }
 
-void MainWindow::on_stop_clicked()
-{
-    ui->run->setEnabled(true);
-    ui->clear_stored_data->setEnabled(true);
-    ui->stop->setEnabled(false);
-    ui->process->setEnabled(true);
-    ui->add->setEnabled(true);
-    ui->set_container->setEnabled(true);
-    throw Exception("The packing procedure has been forcibly terminated!");
-}
 
 void MainWindow::on_transparency_slider_valueChanged(int value)
 {
@@ -546,3 +519,62 @@ void MainWindow::on_transparency_slider_valueChanged(int value)
     transparency=value/100.0;
     this->setWindowOpacity(transparency);
 }
+
+void MainWindow::handleResult(QVector<BinContainer> &bins)
+{
+    try {
+        all_bins=bins;
+        if(all_bins.isEmpty())
+            throw Exception ("Empty: No any rectangle to display!");
+        ui->stackedWidget->setCurrentIndex(2);
+        //clear first
+        scene->clear();
+        ui->graphicsView->viewport()->update();
+        //than draw
+        QBrush brush(QColor(14,30,55,40));
+        QBrush transparent_brush(QColor(14,30,55,0));
+        QPen outlinePen(QColor(128,0,0,120));
+        QPen binOutlinePen(QColor(0,128,0,120));
+        outlinePen.setWidth(1);
+        binOutlinePen.setWidthF(1.4);
+        //
+        MyObject obj;
+        draw_bin_iterator=0;
+        BinContainer current_bin=all_bins.at(draw_bin_iterator);
+        show_statistics(current_bin,draw_bin_iterator,all_bins.length(),ui->statistics_display);
+        scene->addRect(20,20,container_width,container_height, binOutlinePen,transparent_brush);
+        if(current_bin.getObjNumber()<1)
+            throw Exception("Error:bin is Empty!Nothing to draw!");
+        for(int i=0;i<current_bin.getObjNumber();i++)
+        {
+            obj=current_bin.getObjAt(i);
+            scene->addRect(20+obj.getX(),20+obj.getY(), obj.getWidth(),obj.getHeight(), outlinePen,brush);
+        }
+        //after
+        //zoom to fit
+        ui->graphicsView->fitInView(0,0,container_width+40,container_height+40,Qt::AspectRatioMode::KeepAspectRatio);
+    }catch(Exception &e)
+    {
+        printStatus(ui->status_window,e.what(),DARK_RED);
+    }
+    //activate input processing buttons
+    ui->run->setEnabled(true);
+    ui->clear_stored_data->setEnabled(true);
+    ui->process->setEnabled(true);
+    ui->add->setEnabled(true);
+    ui->set_container->setEnabled(true);
+
+
+
+}
+
+void MainWindow::showMessage(const QString &message)
+{
+    printStatus(ui->status_window,message,DARK_BLUE);
+}
+
+void MainWindow::on_display_bins_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
+

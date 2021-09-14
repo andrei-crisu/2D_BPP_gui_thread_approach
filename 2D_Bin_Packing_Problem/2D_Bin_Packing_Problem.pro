@@ -10,27 +10,23 @@ CONFIG += c++11
 
 SOURCES += \
     bincontainer.cpp \
-    controller.cpp \
     dataparser.cpp \
     exception.cpp \
     io_interface.cpp \
     main.cpp \
     mainwindow.cpp \
     myobject.cpp \
-    packing_algorithm.cpp \
     sorting_algorithm.cpp \
     worker.cpp
 
 HEADERS += \
     bincontainer.h \
-    controller.h \
     dataparser.h \
     exception.h \
     io_interface.h \
     mainwindow.h \
     my_constants.h \
     myobject.h \
-    packing_algorithm.h \
     sorting_algorithm.h \
     worker.h
 
@@ -66,6 +62,7 @@ DISTFILES += \
     app_icons/refresh.png \
     app_icons/run.png \
     app_icons/settings.png \
+    app_icons/tabs.png \
     app_icons/zoom_in.png \
     app_icons/zoom_out.png \
     app_icons/zoom_to_fit.png
