@@ -109,6 +109,14 @@ private slots:
 
     void on_display_bins_clicked();
 
+    void getElapsedTime();
+
+    void on_radioButton_clicked();
+
+    void on_radioButton_2_clicked();
+
+    double calculate_entiere_waste();
+
 signals:
     void askToPack();
     void endPackingTask();
@@ -123,6 +131,10 @@ private:
     double container_width,container_height;
     int draw_bin_iterator;
     double placing_step;
+    bool isPackingOperationActive;
+public:
+    QElapsedTimer *elapsedTime;
+    int selectedPackingMethod;
 
 };
 #endif // MAINWINDOW_H

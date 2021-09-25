@@ -22,6 +22,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSplitter>
@@ -145,9 +146,10 @@ public:
     QGroupBox *groupBox_15;
     QVBoxLayout *verticalLayout_13;
     QGroupBox *groupBox_17;
-    QVBoxLayout *verticalLayout_22;
+    QVBoxLayout *verticalLayout_20;
     QHBoxLayout *horizontalLayout_13;
     QSpacerItem *horizontalSpacer_12;
+    QSpacerItem *horizontalSpacer_21;
     QVBoxLayout *verticalLayout_15;
     QSpacerItem *verticalSpacer_3;
     QGroupBox *groupBox_19;
@@ -155,18 +157,27 @@ public:
     QSpacerItem *verticalSpacer_5;
     QSlider *horizontalSlider;
     QSpacerItem *verticalSpacer_6;
-    QSpacerItem *horizontalSpacer_15;
-    QHBoxLayout *horizontalLayout_16;
-    QSpacerItem *horizontalSpacer_20;
-    QVBoxLayout *verticalLayout_20;
+    QVBoxLayout *verticalLayout_16;
     QSpacerItem *verticalSpacer_10;
     QGroupBox *groupBox_24;
     QVBoxLayout *verticalLayout_21;
     QSpacerItem *verticalSpacer_11;
     QSlider *transparency_slider;
     QSpacerItem *verticalSpacer_12;
-    QSpacerItem *horizontalSpacer_21;
+    QSpacerItem *horizontalSpacer_22;
+    QSpacerItem *horizontalSpacer_15;
+    QHBoxLayout *horizontalLayout_16;
+    QSpacerItem *horizontalSpacer_19;
+    QGroupBox *groupBox_25;
+    QVBoxLayout *verticalLayout_24;
     QSpacerItem *verticalSpacer_4;
+    QHBoxLayout *horizontalLayout_14;
+    QVBoxLayout *verticalLayout_19;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
+    QSpacerItem *horizontalSpacer_18;
+    QSpacerItem *verticalSpacer_7;
+    QSpacerItem *horizontalSpacer_20;
     QGroupBox *groupBox_16;
     QHBoxLayout *horizontalLayout_12;
     QSpacerItem *horizontalSpacer_14;
@@ -848,6 +859,7 @@ public:
 
         display_bins = new QPushButton(groupBox_7);
         display_bins->setObjectName(QString::fromUtf8("display_bins"));
+        display_bins->setEnabled(true);
         sizePolicy.setHeightForWidth(display_bins->sizePolicy().hasHeightForWidth());
         display_bins->setSizePolicy(sizePolicy);
         display_bins->setMinimumSize(QSize(50, 30));
@@ -1451,15 +1463,17 @@ public:
         verticalLayout_13->setContentsMargins(0, 0, 0, 0);
         groupBox_17 = new QGroupBox(groupBox_15);
         groupBox_17->setObjectName(QString::fromUtf8("groupBox_17"));
-        verticalLayout_22 = new QVBoxLayout(groupBox_17);
-        verticalLayout_22->setSpacing(0);
-        verticalLayout_22->setObjectName(QString::fromUtf8("verticalLayout_22"));
-        verticalLayout_22->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_20 = new QVBoxLayout(groupBox_17);
+        verticalLayout_20->setObjectName(QString::fromUtf8("verticalLayout_20"));
         horizontalLayout_13 = new QHBoxLayout();
         horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
-        horizontalSpacer_12 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_13->addItem(horizontalSpacer_12);
+
+        horizontalSpacer_21 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_21);
 
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
@@ -1541,24 +1555,11 @@ public:
 
         horizontalLayout_13->addLayout(verticalLayout_15);
 
-        horizontalSpacer_15 = new QSpacerItem(118, 27, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_13->addItem(horizontalSpacer_15);
-
-
-        verticalLayout_22->addLayout(horizontalLayout_13);
-
-        horizontalLayout_16 = new QHBoxLayout();
-        horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
-        horizontalSpacer_20 = new QSpacerItem(30, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
-
-        horizontalLayout_16->addItem(horizontalSpacer_20);
-
-        verticalLayout_20 = new QVBoxLayout();
-        verticalLayout_20->setObjectName(QString::fromUtf8("verticalLayout_20"));
+        verticalLayout_16 = new QVBoxLayout();
+        verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
         verticalSpacer_10 = new QSpacerItem(20, 80, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
-        verticalLayout_20->addItem(verticalSpacer_10);
+        verticalLayout_16->addItem(verticalSpacer_10);
 
         groupBox_24 = new QGroupBox(groupBox_17);
         groupBox_24->setObjectName(QString::fromUtf8("groupBox_24"));
@@ -1629,21 +1630,135 @@ public:
         verticalLayout_21->addItem(verticalSpacer_12);
 
 
-        verticalLayout_20->addWidget(groupBox_24);
+        verticalLayout_16->addWidget(groupBox_24);
 
 
-        horizontalLayout_16->addLayout(verticalLayout_20);
+        horizontalLayout_13->addLayout(verticalLayout_16);
 
-        horizontalSpacer_21 = new QSpacerItem(118, 27, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_22 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_16->addItem(horizontalSpacer_21);
+        horizontalLayout_13->addItem(horizontalSpacer_22);
+
+        horizontalSpacer_15 = new QSpacerItem(118, 27, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_15);
 
 
-        verticalLayout_22->addLayout(horizontalLayout_16);
+        verticalLayout_20->addLayout(horizontalLayout_13);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_16 = new QHBoxLayout();
+        horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
+        horizontalLayout_16->setContentsMargins(10, -1, -1, -1);
+        horizontalSpacer_19 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        verticalLayout_22->addItem(verticalSpacer_4);
+        horizontalLayout_16->addItem(horizontalSpacer_19);
+
+        groupBox_25 = new QGroupBox(groupBox_17);
+        groupBox_25->setObjectName(QString::fromUtf8("groupBox_25"));
+        groupBox_25->setFont(font);
+        groupBox_25->setStyleSheet(QString::fromUtf8("QGroupBox #groupBox_25{ \n"
+"     border:2px  solid  #2d8064; \n"
+"	color:#2d8064; \n"
+" }"));
+        verticalLayout_24 = new QVBoxLayout(groupBox_25);
+        verticalLayout_24->setObjectName(QString::fromUtf8("verticalLayout_24"));
+        verticalSpacer_4 = new QSpacerItem(20, 60, QSizePolicy::Minimum, QSizePolicy::Fixed);
+
+        verticalLayout_24->addItem(verticalSpacer_4);
+
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setObjectName(QString::fromUtf8("horizontalLayout_14"));
+        verticalLayout_19 = new QVBoxLayout();
+        verticalLayout_19->setObjectName(QString::fromUtf8("verticalLayout_19"));
+        radioButton = new QRadioButton(groupBox_25);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+        radioButton->setFont(font);
+        radioButton->setStyleSheet(QString::fromUtf8(" QRadioButton::indicator:checked {\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"background-color: rgb(167, 206, 151);\n"
+"}\n"
+"\n"
+"QRadioButton::indicator:unchecked {\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"background-color: none;\n"
+"}\n"
+"\n"
+"QRadioButton:checked\n"
+"{\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"\n"
+"}\n"
+"\n"
+"QRadioButton:unchecked\n"
+"{\n"
+"color:#2d8064; \n"
+"}"));
+        radioButton->setChecked(true);
+
+        verticalLayout_19->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(groupBox_25);
+        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+        radioButton_2->setFont(font);
+        radioButton_2->setStyleSheet(QString::fromUtf8(" QRadioButton::indicator:checked {\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"background-color: rgb(167, 206, 151);\n"
+"}\n"
+"\n"
+"QRadioButton::indicator:unchecked {\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"background-color: none;\n"
+"}\n"
+"\n"
+"QRadioButton:checked\n"
+"{\n"
+"border:2px  solid  #2d8064; \n"
+"border-radius: 5px;\n"
+"color:#2d8064; \n"
+"\n"
+"}\n"
+"\n"
+"QRadioButton:unchecked\n"
+"{\n"
+"color:#2d8064; \n"
+"}"));
+        radioButton_2->setChecked(false);
+
+        verticalLayout_19->addWidget(radioButton_2);
+
+
+        horizontalLayout_14->addLayout(verticalLayout_19);
+
+        horizontalSpacer_18 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_14->addItem(horizontalSpacer_18);
+
+
+        verticalLayout_24->addLayout(horizontalLayout_14);
+
+        verticalSpacer_7 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_24->addItem(verticalSpacer_7);
+
+
+        horizontalLayout_16->addWidget(groupBox_25);
+
+        horizontalSpacer_20 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_16->addItem(horizontalSpacer_20);
+
+
+        verticalLayout_20->addLayout(horizontalLayout_16);
 
 
         verticalLayout_13->addWidget(groupBox_17);
@@ -1889,7 +2004,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -2075,6 +2190,9 @@ public:
         groupBox_17->setTitle(QString());
         groupBox_19->setTitle(QCoreApplication::translate("MainWindow", "Step size", nullptr));
         groupBox_24->setTitle(QCoreApplication::translate("MainWindow", "Window Transparency", nullptr));
+        groupBox_25->setTitle(QCoreApplication::translate("MainWindow", "Metod used for packing", nullptr));
+        radioButton->setText(QCoreApplication::translate("MainWindow", "Find the right position by verifying step by step   ", nullptr));
+        radioButton_2->setText(QCoreApplication::translate("MainWindow", "Try to place on the right side or under a placed rectangle   ", nullptr));
         groupBox_16->setTitle(QString());
 #if QT_CONFIG(tooltip)
         home_4->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">home</span></p></body></html>", nullptr));
