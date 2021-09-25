@@ -5,8 +5,8 @@ MyObject::MyObject()
     width=0;
     height=0;
     rotated_90=false;
-    x_pos=-1;
-    y_pos=-1;
+    x_pos=0;
+    y_pos=0;
 }
 
 MyObject::MyObject(double w,double h,bool rotated)
@@ -14,8 +14,8 @@ MyObject::MyObject(double w,double h,bool rotated)
     width=w;
     height=h;
     rotated_90=rotated;
-    x_pos=-1;
-    y_pos=-1;
+    x_pos=0;
+    y_pos=0;
 }
 
 MyObject::MyObject(const MyObject &other)

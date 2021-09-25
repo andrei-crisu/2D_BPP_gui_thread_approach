@@ -48,6 +48,7 @@ void Worker::packResponse()
         //emit the result after packing ended
         emit haveResult(container);
     }  catch (Exception &e){
+        emit errorMessage(e.what());
     }
 }
 
@@ -241,18 +242,16 @@ QVector<BinContainer> Worker::optimizedPacking(QVector<MyObject> obj, double bin
                 if(k==used_bins.length()-1)
                 {
                     current_bin=BinContainer(bin_width,bin_height);
-                    if(fit_inside_optimized(current_bin,current_obj))
-                        place(current_bin,current_obj,0,0);
-                    else
-                    {
+                    if(!fit_inside_optimized(current_bin,current_obj))
                         current_obj.rotate_90();
-                        place(current_bin,current_obj,0,0);
-                    }
+                    place(current_bin,current_obj,0,0);
                     used_bins.append(current_bin);
                     break;
                 }
                 else
+                {
                     continue;
+                }
             }
             else
             {
@@ -270,24 +269,23 @@ QVector<BinContainer> Worker::optimizedPacking(QVector<MyObject> obj, double bin
                         break;
                     }
                     else
+                    {
+                        current_obj.rotate_90();
                         if(k==used_bins.length()-1)
                         {
                             current_bin=BinContainer(bin_width,bin_height);
-                            if(fit_inside_optimized(current_bin,current_obj))
-                                place(current_bin,current_obj,0,0);
-                            else
+                            if(try_to_place_optimized(current_bin,current_obj,offset)==true)
                             {
-                                current_obj.rotate_90();
-                                place(current_bin,current_obj,0,0);
+                                used_bins.append(current_bin);
+                                break;
                             }
-                            used_bins.append(current_bin);
                             break;
                         }
                         else
                         {
-                            current_obj.rotate_90();
                             continue;
                         }
+                    }
                 }
             }
 
@@ -346,7 +344,9 @@ bool Worker::try_to_place_optimized(BinContainer &bin, MyObject &obj,double offs
     //if neither method can't be used means that current rectangle can t be placed in current bin;
     // will be returned false (it indicates that rectangle wasn't placed)
     double i,j;
-    if(bin.getObjNumber()==0 && fit_inside_optimized(bin,obj)==true)
+    if(!fit_inside_optimized(bin,obj))
+            obj.rotate_90();
+    if(bin.getObjNumber()==0)
     {
         place(bin,obj,0,0);
         return true;
@@ -441,6 +441,4 @@ void Worker::statusSlot()
     str+=QString::number(val,'f',2);
     str+=" % ";
     emit statusMessage(str);
-    qDebug()<<"here";
-
 }

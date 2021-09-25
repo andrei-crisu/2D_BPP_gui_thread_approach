@@ -39,6 +39,7 @@ signals:
     void haveResult(QVector<BinContainer> &result);
     void taskEnded();
     void statusMessage(const QString &message);
+    void errorMessage(const QString &message);
 private:
     // add your variables here
     QVector<MyObject> rectangles;

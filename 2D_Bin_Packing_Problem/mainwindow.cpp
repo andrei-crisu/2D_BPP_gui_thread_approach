@@ -379,9 +379,12 @@ void MainWindow::on_run_clicked()
         connect(worker,&Worker::haveResult,this,&MainWindow::handleResult);
         connect( worker, &Worker::haveResult, thread, &QThread::quit);
         connect( worker, &Worker::haveResult, worker, &Worker::deleteLater);
+        connect( worker, &Worker::errorMessage, thread, &QThread::quit);
+        connect( worker, &Worker::errorMessage, worker, &Worker::deleteLater);
         connect( thread, &QThread::finished, thread, &QThread::deleteLater);
 
         connect(worker,&Worker::statusMessage,this,&MainWindow::showMessage);
+        connect(worker,&Worker::errorMessage,this,&MainWindow::showErrorMessage);
 
         elapsedTime->start();
         isPackingOperationActive=true;
@@ -552,10 +555,17 @@ void MainWindow::handleResult(QVector<BinContainer> &bins)
 
         //display total waste in status_window
         QString totalWaste="The average waste per bin : ";
-        totalWaste+=QString::number(calculate_entiere_waste(),'g');
+        totalWaste+=QString::number(calculate_entiere_waste(),'g',2);
         totalWaste+=" %";
         printOutput(ui->status_window,totalWaste,DARK_BLUE);
 
+        //display number of packed items
+        QString packedItems="Number of packed items: ";
+        int number_of_packed_items=getNumberOfPackedRectangles();
+        packedItems+=QString::number(number_of_packed_items);
+        packedItems+="/";
+        packedItems+=QString::number(all_objects.length());
+        printOutput(ui->status_window,packedItems,DARK_BLUE);
 
         ui->stackedWidget->setCurrentIndex(2);
         //clear first
@@ -603,6 +613,17 @@ void MainWindow::handleResult(QVector<BinContainer> &bins)
 void MainWindow::showMessage(const QString &message)
 {
     printStatus(ui->status_window,message,DARK_BLUE);
+}
+
+void MainWindow::showErrorMessage(const QString &message)
+{
+    printStatus(ui->status_window,message,DARK_RED);
+    isPackingOperationActive=false;
+    ui->run->setEnabled(true);
+    ui->clear_stored_data->setEnabled(true);
+    ui->process->setEnabled(true);
+    ui->add->setEnabled(true);
+    ui->set_container->setEnabled(true);
 }
 
 void MainWindow::on_display_bins_clicked()
@@ -694,5 +715,17 @@ double MainWindow::calculate_entiere_waste()
     }
     total_waste=(total_waste/(all_bins.length()*current_bin.getArea()))*100;
     return total_waste;
+}
+
+int MainWindow::getNumberOfPackedRectangles()
+{
+    BinContainer current_bin;
+    int nr_of_packed_items=0;
+    for(int i=0;i<all_bins.length();i++)
+    {
+        current_bin=all_bins.at(i);
+        nr_of_packed_items+=current_bin.getObjNumber();
+    }
+    return nr_of_packed_items;
 }
 

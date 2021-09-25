@@ -106,6 +106,7 @@ private slots:
     void handleResult(QVector<BinContainer> &bins);
 
     void showMessage(const QString &message);
+    void showErrorMessage(const QString &message);
 
     void on_display_bins_clicked();
 
@@ -116,6 +117,7 @@ private slots:
     void on_radioButton_2_clicked();
 
     double calculate_entiere_waste();
+    int getNumberOfPackedRectangles();
 
 signals:
     void askToPack();
