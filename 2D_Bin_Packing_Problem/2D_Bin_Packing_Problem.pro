@@ -39,6 +39,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
+    app_exe_icon.qrc \
     app_resources.qrc
 
 DISTFILES += \
@@ -56,6 +57,7 @@ DISTFILES += \
     app_icons/help.png \
     app_icons/home.png \
     app_icons/next.png \
+    app_icons/package.ico \
     app_icons/package.png \
     app_icons/play.png \
     app_icons/previous.png \

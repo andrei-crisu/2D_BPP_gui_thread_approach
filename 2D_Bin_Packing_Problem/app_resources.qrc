@@ -5,7 +5,6 @@
         <file>app_icons/exit.png</file>
         <file>app_icons/help.png</file>
         <file>app_icons/settings.png</file>
-        <file>app_icons/clear.png</file>
         <file>app_icons/zoom_in.png</file>
         <file>app_icons/zoom_out.png</file>
         <file>app_icons/zoom_to_fit.png</file>
@@ -17,12 +16,12 @@
         <file>app_icons/package.png</file>
         <file>app_icons/next.png</file>
         <file>app_icons/previous.png</file>
-        <file>app_icons/all.png</file>
         <file>app_icons/delete.png</file>
         <file>app_icons/file.png</file>
         <file>app_icons/data-processing.png</file>
         <file>app_icons/run.png</file>
         <file>app_icons/end_task.png</file>
         <file>app_icons/tabs.png</file>
+        <file>app_icons/package.ico</file>
     </qresource>
 </RCC>

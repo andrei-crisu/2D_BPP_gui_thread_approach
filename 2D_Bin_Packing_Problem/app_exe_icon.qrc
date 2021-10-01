@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/exe_icon">
+        <file>app_icons/package.ico</file>
+    </qresource>
+</RCC>

@@ -7,6 +7,7 @@ release/mainwindow.o
 release/myobject.o
 release/sorting_algorithm.o
 release/worker.o
+release/qrc_app_exe_icon.o
 release/qrc_app_resources.o
 release/moc_mainwindow.o
 release/moc_worker.o
