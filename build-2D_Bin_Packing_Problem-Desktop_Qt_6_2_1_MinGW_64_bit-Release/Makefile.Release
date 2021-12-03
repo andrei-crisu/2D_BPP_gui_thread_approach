@@ -19,7 +19,7 @@ CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextr
 INCPATH       = -I../2D_Bin_Packing_Problem -I. -IC:/Qt/6.2.1/mingw81_64/include -IC:/Qt/6.2.1/mingw81_64/include/QtWidgets -IC:/Qt/6.2.1/mingw81_64/include/QtGui -IC:/Qt/6.2.1/mingw81_64/include/QtCore -Irelease -I. -I/include -IC:/Qt/6.2.1/mingw81_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        C:\Qt\6.2.1\mingw81_64\lib\libQt6Widgets.a C:\Qt\6.2.1\mingw81_64\lib\libQt6Gui.a C:\Qt\6.2.1\mingw81_64\lib\libQt6Core.a -lmingw32 C:\Qt\6.2.1\mingw81_64\lib\libQt6EntryPoint.a -lshell32  
+LIBS        =        C:\Qt\6.2.1\mingw81_64\lib\libQt6Widgets.a C:\Qt\6.2.1\mingw81_64\lib\libQt6Gui.a C:\Qt\6.2.1\mingw81_64\lib\libQt6Core.a release\app_res.o -lmingw32 C:\Qt\6.2.1\mingw81_64\lib\libQt6EntryPoint.a -lshell32  
 QMAKE         = C:\Qt\6.2.1\mingw81_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\app_res.o
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -127,8 +127,11 @@ DESTDIR_TARGET = release\2D_Bin_Packing_Problem.exe
 first: all
 all: Makefile.Release  release/2D_Bin_Packing_Problem.exe
 
-release/2D_Bin_Packing_Problem.exe: C:/Qt/6.2.1/mingw81_64/lib/libQt6Widgets.a C:/Qt/6.2.1/mingw81_64/lib/libQt6Gui.a C:/Qt/6.2.1/mingw81_64/lib/libQt6Core.a C:/Qt/6.2.1/mingw81_64/lib/libQt6EntryPoint.a ui_mainwindow.h $(OBJECTS) 
+release/2D_Bin_Packing_Problem.exe: C:/Qt/6.2.1/mingw81_64/lib/libQt6Widgets.a C:/Qt/6.2.1/mingw81_64/lib/libQt6Gui.a C:/Qt/6.2.1/mingw81_64/lib/libQt6Core.a C:/Qt/6.2.1/mingw81_64/lib/libQt6EntryPoint.a ui_mainwindow.h $(OBJECTS) release/app_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.2D_Bin_Packing_Problem.Release  $(LIBS)
+
+release/app_res.o: ../2D_Bin_Packing_Problem/app.rc
+	windres -i ..\2D_Bin_Packing_Problem\app.rc -o release\app_res.o --include-dir=./../2D_Bin_Packing_Problem $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\2D_Bin_Packing_Problem\2D_Bin_Packing_Problem.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
@@ -140,6 +143,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\bincontainer.o release\dataparser.o release\exception.o release\io_interface.o release\main.o release\mainwindow.o release\myobject.o release\sorting_algorithm.o release\worker.o release\qrc_app_exe_icon.o release\qrc_app_resources.o release\moc_mainwindow.o release\moc_worker.o
+	-$(DEL_FILE) release\app_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash

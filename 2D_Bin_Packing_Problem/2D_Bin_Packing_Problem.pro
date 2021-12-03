@@ -42,6 +42,8 @@ RESOURCES += \
     app_exe_icon.qrc \
     app_resources.qrc
 
+RC_FILE= app.rc
+
 DISTFILES += \
     app_icons/add.png \
     app_icons/all.png \
